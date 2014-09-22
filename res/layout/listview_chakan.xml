@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_chakan"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/bianhao"
+        android:layout_width="160sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8sp"
+        android:layout_marginRight="4sp"
+        android:gravity="center"
+        android:text=""
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/xinmin"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/bianhao"
+        android:gravity="center"
+        android:text=""
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/danwei"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/xinmin"
+        android:gravity="center"
+        android:text=""
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/zongfen"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/danwei"
+        android:gravity="center"
+        android:text=""
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/pogejieguo"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/zongfen"
+        android:gravity="center"
+        android:text=""
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/ceshijieguo"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/pogejieguo"
+        android:gravity="center"
+        android:text=""
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/toupiaoqinkuang"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/ceshijieguo"
+        android:gravity="center"
+        android:text=""
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/pinyuqinkuang"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/toupiaoqinkuang"
+        android:gravity="center"
+        android:text=""
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button_modify"
+        android:layout_width="80sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:onClick="button_modify_onclick"
+        android:text="查看"
+        android:textSize="24sp" />
+
+</RelativeLayout>

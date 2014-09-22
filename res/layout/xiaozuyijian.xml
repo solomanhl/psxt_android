@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffaaaaaa"
+    android:orientation="vertical" >
+
+    
+    
+    <Button
+        android:id="@+id/listView_xiaozuyijian_submit"
+        android:layout_width="160sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_selector"
+        android:onClick="listView_xiaozuyijian_submit_onclick"
+        android:text="提交数据到服务器"
+        android:textColor="#ffffffff" />
+    
+    <include
+        android:id="@+id/include_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/listView_xiaozuyijian_submit"
+        layout="@layout/xiaozuyijian_head" />
+    
+
+    <ListView
+        android:id="@+id/listView_xiaozuyijian"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/include_head"
+        android:cacheColorHint="#00000000"
+         >
+    </ListView>
+
+    
+
+</RelativeLayout>

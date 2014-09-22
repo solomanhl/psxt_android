@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/xuhao_head"
+        android:layout_width="60sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8sp"
+        android:layout_marginRight="4sp"
+        android:gravity="center"
+        android:text="编号"
+        android:textSize="24sp" />
+    
+    <TextView
+        android:id="@+id/bianhao_head"
+        android:layout_width="160sp"
+        android:layout_height="wrap_content"
+        
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/xuhao_head"
+        android:layout_marginRight="4sp"
+        android:gravity="center"
+        android:text="材料袋号"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/xinmin_head"
+        android:layout_width="80sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/bianhao_head"
+        android:gravity="center"
+        android:text="姓名"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/danwei_head"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/xinmin_head"
+        android:gravity="center"
+        android:text="单位"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/pinwei_head"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/danwei_head"
+        android:gravity="center"
+        android:text="主审评委"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/fenshu_head"
+        android:layout_width="60sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/pinwei_head"
+        android:gravity="center"
+        android:text="分数"
+        android:textSize="24sp" />
+
+    <!-- 小组评分 -->
+    <TextView
+        android:id="@+id/xiaozufen_head"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/fenshu_head"
+        android:gravity="center"
+        android:text="小组评分"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/poge_head"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/xiaozufen_head"
+        android:gravity="center"
+        android:text="破格结果"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/ceshi_head"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/poge_head"
+        android:gravity="center"
+        android:text="测试结果"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/xiaozuyijian_head"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/ceshi_head"
+        android:gravity="center"
+        android:text="小组意见"
+        android:textSize="24sp" />
+
+</RelativeLayout>

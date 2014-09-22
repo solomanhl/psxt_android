@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back_entrance"
+    android:focusableInTouchMode="true" >
+
+    <Button
+        android:id="@+id/button_czsm0"
+        android:layout_width="48dp"
+        android:layout_height="172dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/czshm_selector"
+        android:onClick="button_czsm0_onclick" />
+
+    <Button
+        android:id="@+id/button_quit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/exit1"
+        android:onClick="button_quit_onclick" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="600sp"
+        android:layout_height="32sp"
+        android:layout_above="@+id/info"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/center_layout"
+        android:layout_centerHorizontal="true"
+        android:textSize="32sp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/button_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:onClick="button_download_onclick"
+        android:text="下载资料"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:id="@+id/center_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_quit"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/xinmin1" />
+
+            <EditText
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/input1"
+                android:ems="8"
+                android:singleLine="true"                
+                android:textSize="32sp"
+                android:text = "" >
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical" >
+
+            <TextView
+                android:id="@+id/mima"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mima1" />
+
+            <EditText
+                android:id="@+id/pass_word"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:background="@drawable/input1"
+                android:ems="8"
+                android:focusable="true"
+                android:inputType="textPassword"
+                android:textSize="32sp"
+                android:text = "" >
+            </EditText>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="64dp" >
+
+            <Button
+                android:id="@+id/button_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/denlu_selector"
+                android:onClick="button_login_onclick"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/button_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/pinfen_selector"
+                android:onClick="button_start_onclick" />
+            
+            <Button
+                android:id="@+id/button_xiaozuyijian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/yijian_selector"
+                android:onClick="xiaozuyijian_onclick" />
+
+            <Button
+                android:id="@+id/button_toupiaostart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/toupiao_selector"
+                android:onClick="button_toupiaostart_onclick" />
+
+            <Button
+                android:id="@+id/button_jiyu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/jiyu_selector"
+                android:onClick="button_jiyu_onclick" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

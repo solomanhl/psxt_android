@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab_jiyu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false" >
+
+    <TextView
+        android:id="@+id/textView_idf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="材料袋号:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cpidf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_namef"
+        android:layout_toRightOf="@+id/textView_idf"
+        android:background="#80ffffff"
+        android:paddingLeft="16dip"
+        android:singleLine="true"
+        android:text="6210000001"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView_namef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/textView_cpidf"
+        android:paddingLeft="48dip"
+        android:text="姓名:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cpnamef"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_namef"
+        android:layout_toRightOf="@+id/textView_namef"
+        android:background="#80ffffff"
+        android:paddingLeft="16dip"
+        android:singleLine="true"
+        android:text="马庆栋"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView_companyf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_cpnamef"
+        android:layout_toRightOf="@+id/textView_cpnamef"
+        android:paddingLeft="48dip"
+        android:paddingTop="2dip"
+        android:text="工作单位:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cpcompanyf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_companyf"
+        android:layout_toRightOf="@+id/textView_companyf"
+        android:background="#80ffffff"
+        android:paddingLeft="16dip"
+        android:singleLine="true"
+        android:text="湖北移动集团公司"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView_jiyuf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_idf"
+        android:paddingTop="32dip"
+        android:text="主任寄语："
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="48dip"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/textView_cpjiyuf"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_jiyuf"
+        android:background="#8075e4e5"
+        android:lines="4"
+        android:maxLines="4"
+        android:paddingBottom="8dip"
+        android:paddingLeft="16dip"
+        android:scrollbars="vertical"
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/button_zhurensave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/save_selector"
+        android:onClick="button_zhurensave_onclick"
+        android:textSize="48dip" />
+
+</RelativeLayout>

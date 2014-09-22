@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab5"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_alignParentLeft="true"
+    android:layout_alignParentTop="true"
+    android:paddingLeft="16dip"
+    android:paddingTop="8dip" >
+
+    <TextView
+        android:id="@+id/textView_id5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="材料袋号:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="38dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cpid5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_id5"
+        android:layout_toRightOf="@+id/textView_id5"
+        android:background="#80ffffff"
+        android:paddingLeft="16dip"
+        android:singleLine="true"
+        android:text="1002030"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="38sp"
+        android:textStyle="italic" >
+    </TextView>
+
+    <TextView
+        android:id="@+id/textView_name5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_id5"
+        android:text="姓   名:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="38dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cpname5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_name5"
+        android:layout_toRightOf="@+id/textView_name5"
+        android:background="#80ffffff"
+        android:paddingLeft="16dip"
+        android:singleLine="true"
+        android:text="马庆栋"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="38dip"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView_votestate5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:paddingLeft="200dip"
+        android:text="小组意见:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="38dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cpvotestate5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_votestate5"
+        android:layout_toRightOf="@+id/textView_votestate5"
+        android:background="#80ffffff"
+        android:paddingLeft="16dip"
+        android:singleLine="true"
+        android:text="未投票"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="38dip"
+        android:textStyle="italic"
+        android:visibility="invisible" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup_yijian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/textView_votestate5"
+        android:layout_below="@+id/textView_votestate5"
+        android:contentDescription="投票" >
+
+        <RadioButton
+            android:id="@+id/radioButton_agree_yijian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:onClick="agree_yijian_onclick"
+            android:text="建议通过"
+            android:textColor="#ff00ff00"
+            android:textSize="48dip" />
+
+        <RadioButton
+            android:id="@+id/radioButton_against_yijian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:onClick="against_yijian_onclick"
+            android:text="建议不通过"
+            android:textColor="#ffff0000"
+            android:textSize="48dip" />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/button_xiaozuyijian"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/save_selector"
+        android:onClick="xiaozuyijian_onclick"
+        android:textSize="32sp" />
+    <!--
+    <Button
+        android:id="@+id/button_cancelvote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button_vote"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/button_vote"
+        android:enabled="false"
+        android:onClick="cancelvote_onclick"
+        android:text="取消"
+        android:textSize="48dip" />
+    -->
+
+    <TextView
+        android:id="@+id/textView_pogejielun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_ceshi5"
+        android:text="破格结论："
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cppogejielun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_pogejielun"
+        android:layout_toRightOf="@+id/textView_pogejielun"
+        android:background="#80ffffff"
+        android:singleLine="true"
+        android:text="    "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView_ceshi5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_english5"
+        android:text="测试结果："
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cpceshi5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_ceshi5"
+        android:layout_toRightOf="@+id/textView_ceshi5"
+        android:background="#80ffffff"
+        android:singleLine="true"
+        android:text="22"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView_english5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_computer5"
+        android:text="外语成绩:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cpenglish5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_english5"
+        android:layout_toRightOf="@+id/textView_english5"
+        android:background="#80ffffff"
+        android:singleLine="true"
+        android:text="理工类A级"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip" />
+
+    <TextView
+        android:id="@+id/textView_pinjunfen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_pogejielun"
+        android:text="评分："
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cppinjunfen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_pinjunfen"
+        android:layout_toRightOf="@+id/textView_pinjunfen"
+        android:background="#80ffffff"
+        android:singleLine="true"
+        android:text="  "
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView_company5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_name5"
+        android:text="工作单位:"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="28dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cpcompany5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_company5"
+        android:layout_toLeftOf="@+id/textView_votestate5"
+        android:layout_toRightOf="@+id/textView_company5"
+        android:background="#80ffffff"
+        android:paddingLeft="16dip"
+        android:text="danwei...."
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="24sp"
+        android:textStyle="italic" />
+
+    <TextView
+        android:id="@+id/textView_computer5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView_company5"
+        android:layout_marginTop="16dp"
+        android:text="计算机能力："
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textView_cpcomputer5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView_computer5"
+        android:layout_toRightOf="@+id/textView_computer5"
+        android:background="#80ffffff"
+        android:singleLine="true"
+        android:text="理工类A级"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textSize="32dip"
+        android:textStyle="italic" />
+
+    <Button
+        android:id="@+id/button_zhengce5_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/zhence_selector"
+        android:onClick="button_zhengce5_2_onclick"
+        android:textSize="24sp" />
+    <Button
+        android:id="@+id/button_czsm5_2"
+         android:layout_width="48dp"
+        android:layout_height="172dp"
+        android:layout_above="@+id/button_zhengce5_2"
+        android:layout_marginBottom="32sp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/czshm_selector"
+        android:onClick="button_czsm5_2_onclick" />
+
+</RelativeLayout>

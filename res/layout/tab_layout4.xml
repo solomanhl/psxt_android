@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab4"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView_papers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="16dip"
+        android:text="任现职以来发表的论文、论著或技术报告："
+        android:textSize="32dip"
+        android:textStyle="bold" >
+    </TextView>
+
+    <ListView
+        android:id="@+id/listview2_results"
+        android:layout_width="match_parent"
+        android:layout_height="280dip"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView_papers"
+        android:cacheColorHint="#00000000"
+        android:clickable="false"
+        android:paddingLeft="16dip" >
+        </ListView>
+        
+    <TextView
+        android:id="@+id/textView_awards"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/listview2_results"
+        android:layout_marginTop="16dip"
+        android:paddingLeft="16dip"
+        android:text="成果获奖及受表彰情况："
+        android:textSize="32dip"
+        android:textStyle="bold" >
+
+    </TextView>
+
+     <ListView
+        android:id="@+id/listview3_results"
+        android:layout_width="1180sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView_awards"
+        android:cacheColorHint="#00000000"
+        android:clickable="false"
+        android:paddingLeft="16dip"  >
+    </ListView>
+
+      <Button
+        android:id="@+id/button_zhengce4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="button_zhengce4_onclick"
+        android:background="@drawable/zhence_selector"
+        android:textSize="24sp" />
+      <Button
+        android:id="@+id/button_czsm4"
+         android:layout_width="48dp"
+        android:layout_height="172dp"
+        android:layout_above="@+id/button_zhengce4"
+        android:layout_marginBottom="32sp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/czshm_selector"
+        android:onClick="button_czsm4_onclick" />
+</RelativeLayout>

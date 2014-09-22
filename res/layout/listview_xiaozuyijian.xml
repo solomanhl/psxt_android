@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list_xiaozuyijian"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants" >
+
+    <TextView
+        android:id="@+id/xuhao1"
+        android:layout_width="60sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="8sp"
+        android:layout_marginRight="4sp"
+        android:gravity="center"
+        android:text="编号"
+        android:textSize="24sp" />
+    
+    <TextView
+        android:id="@+id/bianhao1"
+        android:layout_width="160sp"
+        android:layout_height="wrap_content"
+        
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/xuhao1"
+        android:layout_marginRight="4sp"
+        android:gravity="center"
+        android:text="材料袋号"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/xinmin1"
+        android:layout_width="80sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/bianhao1"
+        android:gravity="center"
+        android:text="姓名"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/danwei1"
+        android:layout_width="300sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/xinmin1"
+        android:gravity="center"
+        android:text="单位"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/pinwei1"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/danwei1"
+        android:gravity="center"
+        android:text="主审评委"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/fenshu1"
+        android:layout_width="60sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/pinwei1"
+        android:gravity="center"
+        android:text="分数"
+        android:textSize="24sp" />
+
+    <!-- 小组评分 -->
+    <TextView
+        android:id="@+id/xiaozufen1"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/fenshu1"
+        android:gravity="center"
+
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/poge1"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/xiaozufen1"
+        android:gravity="center"
+        android:text="破格结果"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/ceshi1"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/poge1"
+        android:gravity="center"
+        android:text="测试结果"
+        android:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/xiaozuyijian1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/ceshi1"
+        android:gravity="center"
+        android:entries="@array/xiaozuyijianspinner"
+        android:textSize="48sp" />
+
+</RelativeLayout>

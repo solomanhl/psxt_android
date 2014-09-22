@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab3"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/textView_results"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="16dip"
+        android:paddingTop="32dip"
+        android:text="任现职以来主要工作业绩与成果："
+        android:textSize="32dip"
+        android:textStyle="bold" >
+    </TextView>
+
+    <ListView
+        android:id="@+id/listview_results"
+        android:layout_width="1180sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView_results"
+        android:cacheColorHint="#00000000"
+        android:clickable="false"
+        android:paddingLeft="16dip"
+        android:paddingTop="32dip" >
+    </ListView>
+ <Button
+        android:id="@+id/button_zhengce3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="button_zhengce3_onclick"
+        android:background="@drawable/zhence_selector"
+        android:textSize="24sp" />
+ <Button
+        android:id="@+id/button_czsm3"
+        android:layout_width="48dp"
+        android:layout_height="172dp"
+        android:layout_above="@+id/button_zhengce3"
+        android:layout_marginBottom="32sp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/czshm_selector"
+        android:onClick="button_czsm3_onclick" />
+</RelativeLayout>

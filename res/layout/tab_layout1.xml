@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="false" >
+
+    <RelativeLayout
+        android:id="@+id/tab1_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:clickable="false"
+        android:paddingLeft="16dip"
+        android:paddingTop="8dip" >
+
+        <TextView
+            android:id="@+id/textView_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="材料袋号:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_name"
+            android:layout_toRightOf="@+id/textView_id"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="6210000001"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dip"
+            android:layout_toRightOf="@+id/textView_cpid"
+            android:text="姓名:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_name"
+            android:layout_toRightOf="@+id/textView_name"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="马庆栋"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dip"
+            android:layout_toRightOf="@+id/textView_cpname"
+            android:text="性别:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpsex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_name"
+            android:layout_toRightOf="@+id/textView_sex"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="男"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_born"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_id"
+            android:layout_marginTop="16dip"
+            android:text="出生日期:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpborn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_born"
+            android:layout_toRightOf="@+id/textView_born"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="1987.06.10"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="28dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_company"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpborn"
+            android:layout_alignLeft="@+id/textView_name"
+            android:layout_toRightOf="@+id/textView_cpborn"
+            android:text="工作单位:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpcompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_company"
+            android:layout_toRightOf="@+id/textView_company"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="湖北移动集团公司"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <!--
+        <TextView
+            android:id="@+id/textView_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_company"
+            android:paddingTop="2dip"
+            android:text="行政职务:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cppost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_post"
+            android:layout_toRightOf="@+id/textView_post"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="副主任科员"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_political"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cppost"
+            android:layout_alignLeft="@+id/textView_sex"
+            android:layout_toRightOf="@+id/textView_cppost"
+            android:paddingLeft="48dip"
+            android:text="政治面貌:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cppolitical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cppost"
+            android:layout_toRightOf="@+id/textView_political"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="党员"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+        -->
+
+        <TextView
+            android:id="@+id/textView_where"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_born"
+            android:layout_marginTop="16dip"
+            android:text="毕业院校:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpwhere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_where"
+            android:layout_toLeftOf="@+id/textView_when"
+            android:layout_toRightOf="@+id/textView_where"
+            android:background="#80ffffff"
+            android:maxLines="2"
+            android:maxWidth="250dip"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="武汉大学"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_professional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_where"
+            android:layout_alignLeft="@+id/textView_curshenfenzhen"
+            android:layout_toRightOf="@+id/textView_cpwhere"
+            android:text="所学专业:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpprofessional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_where"
+            android:layout_toRightOf="@+id/textView_professional"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="环境艺术设计"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_when"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_where"
+            android:layout_toRightOf="@+id/textView_cpid"
+            android:paddingTop="2dip"
+            android:text="毕业时间:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpwhen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_when"
+            android:layout_toRightOf="@+id/textView_when"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="2005-06"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_education"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpwhen"
+            android:layout_alignLeft="@+id/textView_sex"
+            android:layout_toRightOf="@+id/textView_cpwhen"
+            android:text="学历:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpeducation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_education"
+            android:layout_toLeftOf="@+id/textView_professional"
+            android:layout_toRightOf="@+id/textView_education"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="工程硕士"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_where2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_where"
+            android:layout_marginTop="16dip"
+            android:text="毕业院校:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpwhere2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_where2"
+            android:layout_alignRight="@+id/textView_cpwhere"
+            android:layout_toRightOf="@+id/textView_where2"
+            android:background="#80ffffff"
+            android:maxLines="2"
+            android:maxWidth="250dip"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="222学"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_when2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_where2"
+            android:layout_toRightOf="@+id/textView_cpid"
+            android:paddingTop="2dip"
+            android:text="毕业时间:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpwhen2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_when2"
+            android:layout_toRightOf="@+id/textView_when2"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="2005-06"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_othereducation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpwhen2"
+            android:layout_alignLeft="@+id/textView_sex"
+            android:layout_toRightOf="@+id/textView_cpwhen2"
+            android:text="学历:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpothereducation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_othereducation"
+            android:layout_toLeftOf="@+id/textView_professional"
+            android:layout_toRightOf="@+id/textView_othereducation"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="昆虫硕士"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_professional2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_where2"
+            android:layout_alignLeft="@+id/textView_curshenfenzhen"
+            android:layout_toRightOf="@+id/textView_cpothereducation"
+            android:text="所学专业:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpprofessional2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_where2"
+            android:layout_toRightOf="@+id/textView_professional2"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="环境艺术设计"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_cpcurwork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_curwork"
+            android:layout_toRightOf="@+id/textView_curwork"
+            android:background="#80ffffff"
+            android:maxEms="20"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="12345678901234567890"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_curshenfenzhen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpsex"
+            android:layout_marginLeft="144sp"
+            android:layout_toRightOf="@+id/textView_cpsex"
+            android:text="身份证："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpcurshenfenzhen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_curshenfenzhen"
+            android:layout_toRightOf="@+id/textView_curshenfenzhen"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="000000000000000000"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_curshenbaoleixin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_where2"
+            android:layout_marginTop="32dip"
+            android:text="申报类型："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpcurshenbaoleixin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_curshenbaoleixin"
+            android:layout_toRightOf="@+id/textView_curshenbaoleixin"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="类型"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_curshenbaojibie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_curshenbaoleixin"
+            android:layout_marginTop="16dip"
+            android:text="申报级别："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpcurshenbaojibie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_curshenbaojibie"
+            android:layout_toRightOf="@+id/textView_curshenbaojibie"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="高级"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_curpinweihui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_curshenbaojibie"
+            android:layout_marginTop="16dip"
+            android:text="评委会："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpcurpinweihui"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_curpinweihui"
+            android:layout_toRightOf="@+id/textView_curpinweihui"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="---评委会"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_jibenchenzhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpcurpinweihui"
+            android:layout_alignLeft="@+id/textView_chenzhi"
+            android:layout_toRightOf="@+id/textView_cpcurpinweihui"
+            android:text="基本称职："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpjibenchenzhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_jibenchenzhi"
+            android:layout_toRightOf="@+id/textView_jibenchenzhi"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="1"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_english"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpcurwork"
+            android:layout_alignLeft="@+id/textView_jibenchenzhi"
+            android:text="外语成绩："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpenglish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_english"
+            android:layout_toRightOf="@+id/textView_english"
+            android:background="#80ffffff"
+            android:paddingLeft="32dip"
+            android:singleLine="true"
+            android:text="4级"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip" />
+
+        <TextView
+            android:id="@+id/textView_computer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_english"
+            android:layout_below="@+id/textView_curwork"
+            android:layout_marginTop="16dip"
+            android:text="计算机能力："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpcomputer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_computer"
+            android:layout_toRightOf="@+id/textView_computer"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="考试合格"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_continuouseducation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_computer"
+            android:layout_below="@+id/textView_computer"
+            android:layout_marginTop="16dip"
+            android:text="继续教育："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpcontinuouseducation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_continuouseducation"
+            android:layout_toRightOf="@+id/textView_continuouseducation"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:text="合格"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_curwork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_curpinweihui"
+            android:layout_marginTop="16dip"
+            android:text="从事专业："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_curtech"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpcurshenbaoleixin"
+            android:layout_toRightOf="@+id/textView_cpid"
+            android:text="现任职务:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpcurtech"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_curtech"
+            android:layout_toRightOf="@+id/textView_curtech"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="高级工程师"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_beingtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpcurshenbaojibie"
+            android:layout_toRightOf="@+id/textView_cpid"
+            android:text="任职年限:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpbeingtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_beingtime"
+            android:layout_toRightOf="@+id/textView_beingtime"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="5年"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_chenzhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpbeingtime"
+            android:layout_alignLeft="@+id/textView_youxiu"
+            android:layout_alignTop="@+id/textView_cpbeingtime"
+            android:text="称职："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpchenzhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_chenzhi"
+            android:layout_toRightOf="@+id/textView_chenzhi"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="2"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_youxiu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpcurtech"
+            android:layout_marginLeft="32sp"
+            android:layout_toRightOf="@+id/textView_cpsex"
+            android:text="优秀："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpyouxiu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_youxiu"
+            android:layout_toRightOf="@+id/textView_youxiu"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="2"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_ceshi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpyouxiu"
+            android:layout_alignLeft="@+id/textView_cpcurshenfenzhen"
+            android:layout_toRightOf="@+id/textView_cpyouxiu"
+            android:text="测试结果："
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView_cpceshi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_ceshi"
+            android:layout_toRightOf="@+id/textView_ceshi"
+            android:background="#80ffffff"
+            android:paddingLeft="16dip"
+            android:singleLine="true"
+            android:text="2222年合格"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="24dip"
+            android:textStyle="italic" />
+
+        <Button
+            android:id="@+id/button_xuelifujian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView_cpprofessional"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="32sp"
+            android:background="@drawable/btn2_selector"
+            android:onClick="button_xuelifujian_onclick"
+            android:text="查看一览表"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/button_zhengce1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/zhence_selector"
+        android:onClick="button_zhengce1_onclick"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/button_czsm1"
+        android:layout_width="48dp"
+        android:layout_height="172dp"
+        android:layout_above="@+id/button_zhengce1"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="32sp"
+        android:background="@drawable/czshm_selector"
+        android:onClick="button_czsm1_onclick" />
+
+</RelativeLayout>

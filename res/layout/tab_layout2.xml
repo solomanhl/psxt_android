@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tab2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/tab2_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="16dip"
+        android:paddingTop="16dip" >
+
+       <TextView
+            android:id="@+id/textView_workvitae"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            
+            android:paddingTop="16dip"
+            android:text="专技工作简历:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32dip"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/textView_cpworkvitae"
+            android:layout_below="@+id/textView_workvitae"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#8075e4e5"
+            android:paddingBottom="8dip"
+            android:paddingLeft="16dip"
+            android:text="这里显示专技工作简历"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:scrollbars="vertical"
+            android:textSize="32dip"
+            android:focusable="false"
+            android:textStyle="italic" />
+
+    </RelativeLayout>
+ <Button
+        android:id="@+id/button_zhengce2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:onClick="button_zhengce2_onclick"
+        android:background="@drawable/zhence_selector"
+        android:textSize="24sp" />
+ <Button
+        android:id="@+id/button_czsm2"
+        android:layout_width="48dp"
+        android:layout_height="172dp"
+        android:layout_above="@+id/button_zhengce2"
+        android:layout_marginBottom="32sp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/czshm_selector"
+        android:onClick="button_czsm2_onclick" />
+</RelativeLayout>

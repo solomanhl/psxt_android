@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <TextView
+        android:id="@+id/in_listview_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="8dip"
+        android:clickable="false"
+        android:gravity="center_vertical"
+        android:text="1、"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/in_listview_type"
+        android:layout_width="120sp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/in_listview_id"
+        android:layout_toRightOf="@+id/in_listview_id"
+        android:background="#80e7b039"
+        android:clickable="false"
+        android:gravity="center_vertical"
+        android:text="主持"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/in_listview_name"
+        android:layout_width="7800sp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/in_listview_id"
+        android:layout_marginLeft="8dip"
+        android:layout_toRightOf="@+id/in_listview_type"
+        android:background="#80e7b039"
+        android:gravity="center_vertical"
+        android:text="名称"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/in_listview_time"
+        android:layout_width="170sp"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/in_listview_id"
+        android:layout_marginLeft="8dip"
+        android:layout_toLeftOf="@+id/in_listview_see"
+        android:layout_toRightOf="@+id/in_listview_name"
+        android:background="#80e7b039"
+        android:gravity="center_vertical"
+        android:text="2011.10"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/in_listview_see"
+        android:layout_width="96sp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn2_selector"
+        android:text="查看详细" />
+
+    <TextView
+        android:id="@+id/in_listview_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/in_listview_id"
+        android:layout_marginTop="8dip"
+        android:background="#8075e4e5"
+        android:clickable="false"
+        android:paddingLeft="8dip"
+        android:text="工作业绩1，成果1工作业绩1，成果1工作业绩1，成果1工作业绩1，成果1工作业绩1，成果1工作业绩1，成果1工作业绩1，成果1工作业绩1，成果1工作业绩1，成果1工作业绩1，成果1工作业绩1，成果1"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+</RelativeLayout>
