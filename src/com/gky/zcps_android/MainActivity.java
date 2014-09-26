@@ -8,6 +8,7 @@ package com.gky.zcps_android;
 import android.app.AlertDialog;
 import android.app.TabActivity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -15,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -57,6 +59,8 @@ public class MainActivity extends TabActivity {
 		jiyu = bundle.getString("jiyu");
 
 		appState.firstIn = false;
+		
+		if (!appState.xianchangfenzu) {  //现场分组的时候不让左右切换
 		// 定义ViewFlipper
 		viewFlipper1 = (ViewFlipper) findViewById(R.id.viewFlipper1);		
 		
@@ -82,6 +86,7 @@ public class MainActivity extends TabActivity {
 			}
 			
 		};
+		}
 		
 		// ------------------------------
 		appState.tabhost = this.getTabHost();// 从TabActivity上面获取放置Tab的TabHost
@@ -182,6 +187,7 @@ public class MainActivity extends TabActivity {
 		return true;
 	}
 
+	
 	//--------------------------------------------------------
 
 
@@ -211,10 +217,14 @@ public class MainActivity extends TabActivity {
 	// onTouchEvent()-----------------------------------
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		if (gestureDetector.onTouchEvent(event))
-			return true;
-		else
+		if (!appState.xianchangfenzu) { // 不是现场分组才有
+			if (gestureDetector.onTouchEvent(event))
+				return true;
+			else
+				return false;
+		} else {  //现场分组没有这个事件
 			return false;
+		}
 	}
 
 	// ------------------------------------------------

@@ -283,7 +283,7 @@ public class EntranceActivity extends Activity {
 							conn.disconnect();
 							
 							
-							downloadfinish = true;  //强制置true
+							//downloadfinish = true;  //强制置true
 							if ("正在评分".equals(tmp)){
 								appState.workfloat = "pinfen";
 								button_toupiaostart.setVisibility(View.INVISIBLE);
@@ -687,28 +687,29 @@ public class EntranceActivity extends Activity {
 						appState.weiyuanjibie = tmpchenguoArray[1];
 
 						//是否现场分组
-						if ("现场分组".equals(tmpchenguoArray[3])){
+						if ("现场分组".equals(tmpchenguoArray[3])) {
 							appState.xianchangfenzu = true;
-//							appState.workfloat = "pinfen";
-//							button_start.setVisibility(View.VISIBLE);
-//							button_start.setEnabled(true);
+							appState.workfloat = "pinfen";
+							button_start.setVisibility(View.VISIBLE);
+							button_start.setEnabled(true);
 							selectWorkfoat();
-							//现场分组直接跳到搜索界面，投票阶段除外
-							if ("pinfen".equals(appState.workfloat)){
-								Intent it = new Intent(EntranceActivity.this, searchActivity.class);
-								//Bundle bundle = new Bundle();
-								//it.putExtras(bundle);
-
-								startActivity(it);
-							}
-
-							
-							
+//							//现场分组直接跳到搜索界面，投票阶段除外
+//							if ("pinfen".equals(appState.workfloat)){
+//								Intent it = new Intent(EntranceActivity.this, searchActivity.class);
+//								//Bundle bundle = new Bundle();
+//								//it.putExtras(bundle);
+//
+//								startActivity(it);
+//							}
+//
+//							
+//							
 						}else{						
 							appState.xianchangfenzu = false;
+						}
 						// 下载资料
 							button_download_onclick(target);// 另开线程
-						}
+
 
 						// 查看政策 纪律 另开线程
 						// new readThread().start();
@@ -901,14 +902,7 @@ public class EntranceActivity extends Activity {
 		Log.i("info", "点击开始评分");
 		appState.firstIn = false;
 
-		//是否现场分组
-		if (appState.xianchangfenzu){
-			
-			//现场分组直接跳到搜索界面
-			Intent it = new Intent(EntranceActivity.this, searchActivity.class);
-			startActivity(it);
-			
-		}else{						
+				
 			if (downloadfinish) {
 				appState.searchLastPeople("0");// 提交状态（保存/提交评分/保存投票/提交投票）0 1 2 3
 				appState.tab5_state = "pinfen";
@@ -916,6 +910,21 @@ public class EntranceActivity extends Activity {
 				// 查看政策 纪律 另开线程
 				// new readThread().start();
 
+				//是否现场分组
+				if (appState.xianchangfenzu) {
+					
+					//selectWorkfoat();
+					// 现场分组评分阶段直接跳到搜索界面
+					if ("pinfen".equals(appState.workfloat)) {
+						button_start.setEnabled(false);
+						// 现场分组直接跳到搜索界面
+						Intent it = new Intent(EntranceActivity.this, searchWithListActivity.class);
+						startActivity(it);
+						button_start.setEnabled(true);
+					}
+					
+					
+				}else {
 				Intent it = new Intent(EntranceActivity.this, MainActivity.class);
 
 				Bundle bundle = new Bundle();
@@ -923,14 +932,14 @@ public class EntranceActivity extends Activity {
 				it.putExtras(bundle);
 
 				startActivity(it);
+				}
 			} else {
-				/*
-				 * Toast toast = Toast.makeText(getApplicationContext(),
-				 * "正在下载资料，请稍后...", Toast.LENGTH_LONG);
-				 * toast.setGravity(Gravity.CENTER, 0, 0); toast.show();
-				 */
+				
+				 Toast toast = Toast.makeText(getApplicationContext(), "正在下载资料，请稍后...", Toast.LENGTH_LONG);
+				 toast.setGravity(Gravity.CENTER, 0, 0); toast.show();
+				 
 			}
-		}
+
 		
 		
 		

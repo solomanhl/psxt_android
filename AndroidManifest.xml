@@ -72,6 +72,10 @@
             android:theme="@style/AppTheme" >
         </activity>
         <activity
+            android:name="searchWithListActivity"
+            android:theme="@style/AppTheme" >
+        </activity>
+        <activity
             android:name="xiaozuyijianActicity"
             android:theme="@style/AppTheme" >
         </activity>

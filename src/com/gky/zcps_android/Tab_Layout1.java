@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -162,7 +163,8 @@ public class Tab_Layout1 extends Activity
     	textView_cpwhen.setText(appState.peopleList.get(appState.people_cur).get("biyeshijian").toString()); // 毕业时间   
     	
     	if ("pinfen".equals(appState.workfloat)){
-    		button_xuelifujian.setVisibility(View.VISIBLE);
+    		//button_xuelifujian.setVisibility(View.VISIBLE);
+    		button_xuelifujian.setVisibility(View.INVISIBLE);
     	}else if ("toupiao".equals(appState.workfloat)){
     		button_xuelifujian.setVisibility(View.INVISIBLE);
     	}
@@ -316,4 +318,20 @@ public class Tab_Layout1 extends Activity
  	public void button_czsm1_onclick(View target) {
  		appState.launch_help();
  	}
+ 	
+ 	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		// 按下键盘上返回按钮
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			System.out.println("返回按钮");
+			if (appState.workfloat.equals("pinfen") && appState.xianchangfenzu) {
+				Intent it = new Intent(this, searchWithListActivity.class);
+    			startActivity(it);
+    			finish();
+			}
+			return true;
+		} else {
+			return super.onKeyDown(keyCode, event);
+		}
+	}
 }

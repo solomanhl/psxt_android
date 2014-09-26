@@ -28,6 +28,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -380,10 +381,14 @@ public class Tab_Layout5 extends Activity {
 			// 申报类型为04，则需要破格，其它不需要破格
 						if ("04".equals(appState.peopleList.get(appState.people_cur)
 								.get("shenbaoleixin").toString())) {
-							textView_pogeyijian.setVisibility(View.VISIBLE);
-							textView_cppogeyijian.setVisibility(View.VISIBLE);
-							radioGroup_poge.setVisibility(View.VISIBLE);
-							appState.pogebutton = "yes";// 初始化
+							
+							//取消破格功能
+							textView_pogeyijian.setVisibility(View.GONE);	
+							textView_cppogeyijian.setVisibility(View.GONE);
+							radioGroup_poge.setVisibility(View.GONE);
+							
+							//appState.pogebutton = "yes";// 初始化
+							appState.pogebutton = "not_use";// 初始化
 
 						} else {
 							textView_pogeyijian.setVisibility(View.GONE);
@@ -426,7 +431,7 @@ public class Tab_Layout5 extends Activity {
 					textView_cpfenshu3.setEnabled(true);
 					textView_cppogeyijian.setEnabled(true);
 					radio_tongyi.setEnabled(true);
-					radio_butongyi.setEnabled(true);
+					radio_butongyi.setEnabled(true);					
 					button_pinfensave.setEnabled(true);
 					button_chakan1.setEnabled(true);
 				}
@@ -442,9 +447,10 @@ public class Tab_Layout5 extends Activity {
 				textView_cpfenshu2.setEnabled(true);
 				textView_cpfenshu3.setEnabled(true);
 				button_pinfensave.setEnabled(true);
-				textView_cppogeyijian.setEnabled(true);
+				textView_cppogeyijian.setEnabled(true);				
 				radio_tongyi.setEnabled(true);
 				radio_butongyi.setEnabled(true);
+				
 				button_chakan1.setEnabled(true);
 				
 				
@@ -1023,86 +1029,87 @@ public class Tab_Layout5 extends Activity {
 		
 
 		// 申报类型为04，则需要破格，其它不需要破格
-		if ("04".equals(appState.peopleList.get(appState.people_cur).get("shenbaoleixin").toString())) {
-			// 破格
-			if (textView_cpfenshu1.getText() != null
-					&& textView_cpfenshu1.length() > 0
-					&& Integer.valueOf(textView_cpfenshu1.getText().toString()) <= 20
-					&& Integer.valueOf(textView_cpfenshu1.getText().toString()) >= 0
-					&& textView_cpfenshu2.getText() != null
-					&& textView_cpfenshu2.length() > 0
-					&& Integer.valueOf(textView_cpfenshu2.getText().toString()) <= 30
-					&& Integer.valueOf(textView_cpfenshu2.getText().toString()) >= 0
-					&& textView_cpfenshu3.getText() != null
-					&& textView_cpfenshu3.length() > 0
-					&& Integer.valueOf(textView_cpfenshu3.getText().toString()) <= 50
-					&& Integer.valueOf(textView_cpfenshu3.getText().toString()) >= 0
-					&& textView_cppogeyijian.getText() != null
-					&& textView_cppogeyijian.length() > 0) {
-				// 写数据库
-				cursor = appState.queryTable(appState.peopleList.get(appState.people_cur).get("id").toString());
-				if (cursor == null || cursor.getCount() == 0) {
-					// 如果没有保存过，则添加
-					appState.add(appState.peopleList.get(appState.people_cur).get("id").toString(), // id
-							textView_cpzongfen.getText().toString(), // 评分
-							textView_cppogeyijian.getText().toString(), // 破格意见
-							appState.pogebutton, // 破格选择按钮
-							"未投票", "0",// 提交状态（保存/提交评分/保存投票/提交投票）0 1 2 3
-							textView_cpfenshu1.getText().toString(),// 分数1
-							textView_cpfenshu2.getText().toString(),// 分数2
-							textView_cpfenshu3.getText().toString()// 分数3
-							);
-				} else {
-					// 如果保存过，则修改
-					appState.Update_people(appState.peopleList.get(appState.people_cur).get("id").toString(), // id
-							textView_cpzongfen.getText().toString(), // 评分
-							textView_cppogeyijian.getText().toString(), // 破格意见
-							appState.pogebutton, // 破格选择按钮
-							"未投票", "0",// 提交状态（保存/提交评分/保存投票/提交投票）0 1 2 3
-							textView_cpfenshu1.getText().toString(),// 分数1
-							textView_cpfenshu2.getText().toString(),// 分数2
-							textView_cpfenshu3.getText().toString()// 分数3
-							);
-				}
-				Toast toast = Toast.makeText(getApplicationContext(), "保存成功！",
-						Toast.LENGTH_SHORT);
-				toast.setGravity(Gravity.CENTER, 0, 0);
-				toast.show();
-
-				cursor.close();
-				
-				// button_pinfensave.setEnabled(false);
-
-				/*
-				 * // 提交数据 String tmp = submitPinfen();
-				 * 
-				 * if ("接收成功".equals(tmp)){ // 状态改为已提交评分 // 提交状态（未提交/提交评分/提交投票）0
-				 * 1 2 appState.Update_tijiao(appState.peopleList.get(appState.
-				 * people_cur) .get("id").toString(), "1");// 提交评分
-				 * 
-				 * appState.dbClose();
-				 * 
-				 * button_pinfensave.setEnabled(false);
-				 * textView_cpzongfen.setEnabled(false);
-				 * textView_cppogeyijian.setEnabled(false);
-				 * radio_tongyi.setEnabled(false);
-				 * radio_butongyi.setEnabled(false);
-				 * 
-				 * Toast toast = Toast.makeText(getApplicationContext(),
-				 * "提交成功！", Toast.LENGTH_LONG); toast.setGravity(Gravity.CENTER,
-				 * 0, 0); toast.show(); }else if("接收失败".equals(tmp)){ Toast
-				 * toast = Toast.makeText(getApplicationContext(),
-				 * "服务器接收失败，请重新提交！", Toast.LENGTH_LONG);
-				 * toast.setGravity(Gravity.CENTER, 0, 0); toast.show(); }
-				 */
-
-			} else {
-				Toast toast = Toast.makeText(getApplicationContext(),
-						"请填写正确信息！", Toast.LENGTH_LONG);
-				toast.setGravity(Gravity.CENTER, 0, 0);
-				toast.show();
-			}
-		} else {
+		//改成不管破格
+//		if ("04".equals(appState.peopleList.get(appState.people_cur).get("shenbaoleixin").toString())) {
+//			// 破格
+//			if (textView_cpfenshu1.getText() != null
+//					&& textView_cpfenshu1.length() > 0
+//					&& Integer.valueOf(textView_cpfenshu1.getText().toString()) <= 20
+//					&& Integer.valueOf(textView_cpfenshu1.getText().toString()) >= 0
+//					&& textView_cpfenshu2.getText() != null
+//					&& textView_cpfenshu2.length() > 0
+//					&& Integer.valueOf(textView_cpfenshu2.getText().toString()) <= 30
+//					&& Integer.valueOf(textView_cpfenshu2.getText().toString()) >= 0
+//					&& textView_cpfenshu3.getText() != null
+//					&& textView_cpfenshu3.length() > 0
+//					&& Integer.valueOf(textView_cpfenshu3.getText().toString()) <= 50
+//					&& Integer.valueOf(textView_cpfenshu3.getText().toString()) >= 0
+//					&& textView_cppogeyijian.getText() != null
+//					&& textView_cppogeyijian.length() > 0) {
+//				// 写数据库
+//				cursor = appState.queryTable(appState.peopleList.get(appState.people_cur).get("id").toString());
+//				if (cursor == null || cursor.getCount() == 0) {
+//					// 如果没有保存过，则添加
+//					appState.add(appState.peopleList.get(appState.people_cur).get("id").toString(), // id
+//							textView_cpzongfen.getText().toString(), // 评分
+//							textView_cppogeyijian.getText().toString(), // 破格意见
+//							appState.pogebutton, // 破格选择按钮
+//							"未投票", "0",// 提交状态（保存/提交评分/保存投票/提交投票）0 1 2 3
+//							textView_cpfenshu1.getText().toString(),// 分数1
+//							textView_cpfenshu2.getText().toString(),// 分数2
+//							textView_cpfenshu3.getText().toString()// 分数3
+//							);
+//				} else {
+//					// 如果保存过，则修改
+//					appState.Update_people(appState.peopleList.get(appState.people_cur).get("id").toString(), // id
+//							textView_cpzongfen.getText().toString(), // 评分
+//							textView_cppogeyijian.getText().toString(), // 破格意见
+//							appState.pogebutton, // 破格选择按钮
+//							"未投票", "0",// 提交状态（保存/提交评分/保存投票/提交投票）0 1 2 3
+//							textView_cpfenshu1.getText().toString(),// 分数1
+//							textView_cpfenshu2.getText().toString(),// 分数2
+//							textView_cpfenshu3.getText().toString()// 分数3
+//							);
+//				}
+//				Toast toast = Toast.makeText(getApplicationContext(), "保存成功！",
+//						Toast.LENGTH_SHORT);
+//				toast.setGravity(Gravity.CENTER, 0, 0);
+//				toast.show();
+//
+//				cursor.close();
+//				
+//				// button_pinfensave.setEnabled(false);
+//
+//				/*
+//				 * // 提交数据 String tmp = submitPinfen();
+//				 * 
+//				 * if ("接收成功".equals(tmp)){ // 状态改为已提交评分 // 提交状态（未提交/提交评分/提交投票）0
+//				 * 1 2 appState.Update_tijiao(appState.peopleList.get(appState.
+//				 * people_cur) .get("id").toString(), "1");// 提交评分
+//				 * 
+//				 * appState.dbClose();
+//				 * 
+//				 * button_pinfensave.setEnabled(false);
+//				 * textView_cpzongfen.setEnabled(false);
+//				 * textView_cppogeyijian.setEnabled(false);
+//				 * radio_tongyi.setEnabled(false);
+//				 * radio_butongyi.setEnabled(false);
+//				 * 
+//				 * Toast toast = Toast.makeText(getApplicationContext(),
+//				 * "提交成功！", Toast.LENGTH_LONG); toast.setGravity(Gravity.CENTER,
+//				 * 0, 0); toast.show(); }else if("接收失败".equals(tmp)){ Toast
+//				 * toast = Toast.makeText(getApplicationContext(),
+//				 * "服务器接收失败，请重新提交！", Toast.LENGTH_LONG);
+//				 * toast.setGravity(Gravity.CENTER, 0, 0); toast.show(); }
+//				 */
+//
+//			} else {
+//				Toast toast = Toast.makeText(getApplicationContext(),
+//						"请填写正确信息！", Toast.LENGTH_LONG);
+//				toast.setGravity(Gravity.CENTER, 0, 0);
+//				toast.show();
+//			}
+//		} else {
 			// 非破格
 			if (textView_cpfenshu1.getText() != null
 					&& textView_cpfenshu1.length() > 0
@@ -1181,7 +1188,7 @@ public class Tab_Layout5 extends Activity {
 				toast.setGravity(Gravity.CENTER, 0, 0);
 				toast.show();
 			}
-		}// end 非破格
+//		}// end 非破格
 
 		
 		//更新title----------
@@ -1232,7 +1239,7 @@ public class Tab_Layout5 extends Activity {
 //							finish();
 //					 }
 					
-		    			Intent it = new Intent(this, searchActivity.class);
+		    			Intent it = new Intent(this, searchWithListActivity.class);
 		    			startActivity(it);
 		    			finish();
 		    		}
@@ -1669,5 +1676,22 @@ public class Tab_Layout5 extends Activity {
 		// 操作說明按钮点击事件
 		public void button_czsm5_2_onclick(View target) {
 			appState.launch_help();
+		}
+		
+		
+		@Override
+		public boolean onKeyDown(int keyCode, KeyEvent event) {
+			// 按下键盘上返回按钮
+			if (keyCode == KeyEvent.KEYCODE_BACK) {
+				System.out.println("返回按钮");
+				if (appState.workfloat.equals("pinfen") && appState.xianchangfenzu) {
+					Intent it = new Intent(this, searchWithListActivity.class);
+	    			startActivity(it);
+	    			finish();
+				}
+				return true;
+			} else {
+				return super.onKeyDown(keyCode, event);
+			}
 		}
 }
