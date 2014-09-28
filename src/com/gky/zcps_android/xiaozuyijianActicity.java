@@ -35,7 +35,7 @@ import android.widget.Toast;
 public class xiaozuyijianActicity extends Activity{
 	private Global_var appState;
 	private HashMap<String, Object> map = new HashMap<String, Object>();
-	public String xiaozufenArray []  ,xiaozuyijianArray [];
+	public String xiaozufenArray []  ,xiaozuyijianArray [], lianghuaArray[];
 
 	
 	@Override
@@ -47,6 +47,7 @@ public class xiaozuyijianActicity extends Activity{
 		
 		 xiaozufenArray  = new String [appState.people_total];
 		 xiaozuyijianArray  = new String [appState.people_total];
+		 lianghuaArray  = new String [appState.people_total];
 		 
 		 for (int i=0 ;i<appState.people_total; i++){
 			 xiaozufenArray[i] = "";
@@ -75,6 +76,8 @@ public class xiaozuyijianActicity extends Activity{
 				}
 			}		
 			cursor.close();
+			
+			lianghuaArray[i] = appState.peopleList.get(i).get("lianghua").toString();
 		}
 		
 	}
@@ -147,7 +150,10 @@ public class xiaozuyijianActicity extends Activity{
 				int position,// The position of the view in the adapter
 				long id// The row id of the item that was clicked
 		) {
-			popXiaozufen(position);
+			if (lianghuaArray[position].equals("量化")) {	//量化评分才弹出修改小组分数页面
+				popXiaozufen(position);
+			}
+			
 			
 //			HashMap<String, Object> m = new HashMap<String, Object>();
 //			m = lst.get(position);
@@ -205,6 +211,9 @@ public class xiaozuyijianActicity extends Activity{
 			map.put("danwei", appState.peopleList.get(i).get("company").toString());
 			map.put("pinwei",  appState.peopleList.get(i).get("expert_name").toString());
 			map.put("pinfen", appState.scoreList.get(i).get("pinjunfen").toString());
+			
+			map.put("lianghua", appState.peopleList.get(i).get("lianghua").toString());
+			map.put("gerenyijian", appState.peopleList.get(i).get("gerenyijian").toString());
 			//map.put("xiaozupinfen", xiaozufenArray[i]);
 			//map.put("opinion", "通过");
 			
@@ -340,7 +349,16 @@ public class xiaozuyijianActicity extends Activity{
  			zuJian.xinmin1.setText((String) data.get(position).get("xinmin"));			
  			zuJian.danwei1.setText((String) data.get(position).get("danwei"));
  			zuJian.pinwei1.setText((String) data.get(position).get("pinwei"));
- 			zuJian.fenshu1.setText((String) data.get(position).get("pinfen"));
+ 			
+ 			if (data.get(position).get("lianghua").equals("量化")) {	//量化评分
+ 				zuJian.fenshu1.setText((String) data.get(position).get("pinfen"));
+ 			} else {	//不量化评分
+ 				if ( data.get(position).get("gerenyijian").toString().equals("yes")) {
+ 					zuJian.fenshu1.setText("推荐");
+ 				} else if ( data.get(position).get("gerenyijian").toString().equals("no")) {
+ 					zuJian.fenshu1.setText("不推荐");
+ 				}
+ 			}
  			
  			
  			if ("无".equals((String) data.get(position).get("pogejieguo"))){

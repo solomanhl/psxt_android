@@ -105,7 +105,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView_cpzongfen"
             android:layout_below="@+id/textView_cpzongfen"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:layout_toRightOf="@+id/imageView_biaozhun"
             android:text="项目1:"
             android:textAppearance="?android:attr/textAppearanceLarge"

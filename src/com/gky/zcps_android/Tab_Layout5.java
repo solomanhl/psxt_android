@@ -630,11 +630,14 @@ public class Tab_Layout5 extends Activity {
 		}
 		
 		
-		
+		if (appState.lianghua ) {
 		if (appState.xianchangfenzu){
 			textView_cppinjunfen.setText(appState.scoreList.get(appState.people_cur).get("group_score").toString());
 		}else{
 			textView_cppinjunfen.setText(appState.scoreList.get(appState.people_cur).get("pinjunfen").toString());
+		}
+		} else {
+			textView_cppinjunfen.setText(appState.peopleList.get(appState.people_cur).get("gerenyijian").toString());
 		}
 		
 		

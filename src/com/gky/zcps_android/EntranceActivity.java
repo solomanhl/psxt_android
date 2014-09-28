@@ -954,7 +954,7 @@ public class EntranceActivity extends Activity {
 //			appState.tab5_state = "xiaozuyijian";
 //			Intent it = new Intent(EntranceActivity.this, searchActivity.class);
 //			startActivity(it);			
-			
+			button_xiaozuyijian.setEnabled(false);
 			
 			new updateOpinionThread().start();
 		}
@@ -972,7 +972,7 @@ public class EntranceActivity extends Activity {
 			}
 		}
 		
-		private void updateOpinion(){
+		private void updateOpinion() {
 
 			String applicant = "applicant_one.xml";
 				if (downloadfinish) {
@@ -1030,7 +1030,7 @@ public class EntranceActivity extends Activity {
 						startActivity(it);
 				}
 			
-			
+				button_xiaozuyijian.setEnabled(true);
 		}
 		
 	

@@ -54,7 +54,6 @@
         android:layout_width="120sp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="4sp"
         android:layout_toRightOf="@+id/danwei_head"
         android:gravity="center"
         android:text="主审评委"
@@ -62,14 +61,14 @@
 
     <TextView
         android:id="@+id/fenshu_head"
-        android:layout_width="60sp"
+        android:layout_width="70sp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="4sp"
+
         android:layout_toRightOf="@+id/pinwei_head"
         android:gravity="center"
         android:text="分数/意见"
-        android:textSize="18sp" />
+        android:textSize="24sp" />
 
     <!-- 小组评分 -->
     <TextView
