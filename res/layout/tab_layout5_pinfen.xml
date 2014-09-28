@@ -82,126 +82,174 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="32sp"
         android:textStyle="italic" />
-
-    <ImageView
-        android:id="@+id/imageView_biaozhun"
-        android:layout_width="540dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dip"
-        android:layout_toRightOf="@+id/textView_cpcompany5"
-        android:scaleType="fitXY"
-        android:src="@drawable/pinfenbiaozhun" />
-
-    <TextView
-        android:id="@+id/textView_fenshu1"
+    
+    
+    <RelativeLayout
+        android:id="@+id/lianghua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_cpzongfen"
-        android:layout_below="@+id/textView_pinfen"
-        android:layout_marginTop="90dp"
-        android:layout_toRightOf="@+id/imageView_biaozhun"
-        android:text="项目1:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp" />
+        android:layout_toRightOf="@+id/textView_cpcompany5" >
 
-    <EditText
-        android:id="@+id/textView_cpfenshu1"
+        <ImageView
+            android:id="@+id/imageView_biaozhun"
+            android:layout_width="540dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="32dip"
+            android:scaleType="fitXY"
+            android:src="@drawable/pinfenbiaozhun" />
+
+        <TextView
+            android:id="@+id/textView_fenshu1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_cpzongfen"
+            android:layout_below="@+id/textView_cpzongfen"
+            android:layout_marginTop="50dp"
+            android:layout_toRightOf="@+id/imageView_biaozhun"
+            android:text="项目1:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32sp" />
+
+        <EditText
+            android:id="@+id/textView_cpfenshu1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_fenshu1"
+            android:layout_below="@+id/textView_fenshu1"
+            android:background="#8075e4e5"
+            android:ems="2"
+            android:inputType="number"
+            android:maxLength="2"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_fenshu2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_cpfenshu1"
+            android:layout_below="@+id/textView_cpfenshu1"
+            android:layout_marginTop="50dp"
+            android:text="项目2:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32sp" />
+
+        <EditText
+            android:id="@+id/textView_cpfenshu2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_cpfenshu1"
+            android:layout_below="@+id/textView_fenshu2"
+            android:background="#8075e4e5"
+            android:ems="2"
+            android:inputType="number"
+            android:maxLength="2"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_fenshu3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_cpfenshu2"
+            android:layout_below="@+id/textView_cpfenshu2"
+            android:layout_marginTop="70dp"
+            android:text="项目3:"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32sp" />
+
+        <EditText
+            android:id="@+id/textView_cpfenshu3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_cpfenshu2"
+            android:layout_below="@+id/textView_fenshu3"
+            android:background="#8075e4e5"
+            android:ems="2"
+            android:inputType="number"
+            android:maxLength="2"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="32sp"
+            android:textStyle="italic" />
+
+        <TextView
+            android:id="@+id/textView_zongfen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dip"
+            android:layout_toRightOf="@+id/imageView_biaozhun"
+            android:text="总分 : "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ff0000ff"
+            android:textSize="32sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/textView_cpzongfen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView_zongfen"
+            android:layout_below="@+id/textView_zongfen"
+            android:layout_toRightOf="@+id/imageView_biaozhun"
+            android:background="#80f2f6f5"
+            android:editable="false"
+            android:ems="3"
+            android:enabled="false"
+            android:inputType="number"
+            android:maxLength="3"
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#ff0000ff"
+            android:textSize="32sp"
+            android:textStyle="italic" />
+    </RelativeLayout>
+
+    
+    <RelativeLayout
+        android:id="@+id/bulianghua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_fenshu1"
-        android:layout_below="@+id/textView_fenshu1"
-        android:background="#8075e4e5"
-        android:ems="2"
-        android:inputType="number"
-        android:maxLength="2"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textView_fenshu2"
+        android:layout_toRightOf="@+id/textView_cpcompany5" >
+        
+        
+        <RadioGroup
+        android:id="@+id/radioGroup_gerenyijian"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_cpfenshu1"
-        android:layout_below="@+id/textView_cpfenshu1"
-        android:layout_marginTop="50dp"
-        android:text="项目2:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp" />
+         android:layout_alignParentLeft="true"
+            android:layout_marginLeft="48dip"
+        android:orientation="vertical" >
 
-    <EditText
-        android:id="@+id/textView_cpfenshu2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_cpfenshu1"
-        android:layout_below="@+id/textView_fenshu2"
-        android:background="#8075e4e5"
-        android:ems="2"
-        android:inputType="number"
-        android:maxLength="2"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp"
-        android:textStyle="italic" />
+        <RadioButton
+            android:id="@+id/radio_gerentongyi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:onClick="radio_gerentongyi_onclick"
+            android:text="同意推荐"           
+            android:textSize="48sp"
+            android:layout_marginTop="32dp" />
 
-    <TextView
-        android:id="@+id/textView_fenshu3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_cpfenshu2"
-        android:layout_below="@+id/textView_cpfenshu2"
-        android:layout_marginTop="70dp"
-        android:text="项目3:"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp" />
-
-    <EditText
-        android:id="@+id/textView_cpfenshu3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_cpfenshu2"
-        android:layout_below="@+id/textView_fenshu3"
-        android:background="#8075e4e5"
-        android:ems="2"
-        android:inputType="number"
-        android:maxLength="2"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32sp"
-        android:textStyle="italic" />
-
-    <TextView
-        android:id="@+id/textView_zongfen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dip"
-        android:layout_toRightOf="@+id/imageView_biaozhun"
-        android:text="总分 : "
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ff0000ff"
-        android:textSize="32sp"
-        android:textStyle="bold" />
-
-    <EditText
-        android:id="@+id/textView_cpzongfen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_zongfen"
-        android:layout_below="@+id/textView_zongfen"
-        android:layout_toRightOf="@+id/imageView_biaozhun"
-        android:background="#80f2f6f5"
-        android:editable="false"
-        android:ems="3"
-        android:enabled="false"
-        android:inputType="number"
-        android:maxLength="3"
-        android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ff0000ff"
-        android:textSize="32sp"
-        android:textStyle="italic" />
-
+        <RadioButton
+            android:id="@+id/radio_gerenbutongyi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="radio_gerenbutongyi_onclick"
+            android:text="不同意推荐"
+            android:textSize="48sp"
+            android:layout_marginTop="32dp"  />
+    </RadioGroup>
+    
+        </RelativeLayout>
+    
+    
+    
     <TextView
         android:id="@+id/textView_pogeyijian"
         android:layout_width="wrap_content"

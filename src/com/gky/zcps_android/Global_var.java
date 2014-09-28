@@ -52,6 +52,7 @@ public class Global_var extends Application {
 	private final static int CWJ_HEAP_SIZE = 48* 1024* 1024 ; 
 	
 	public boolean xianchangfenzu = false;    //是现场分组，还是建评委会时分组
+	public boolean lianghua = true;	//是否量化
 	public boolean pinshenjieshu = false;		//评审结束标志
 	
 	public String pinweiName;
@@ -83,6 +84,8 @@ public class Global_var extends Application {
 	public String pogebutton = "not_use"; //yes  no  not_use同意 不同意 未使用
 	public String workfloat = "denglu"; //denglu登录  查看纪律kan1   查看政策kan2 评分pinfen，或者投票toupiao，或者评语 pinyu, 或者完成wanchen
 	public String tab5_state= "pinfen"; //评分、投票tab专用
+	
+	public String gerenyijian = "yes";	//不量化评分，个人意见同意，不同意
 	
 	
 

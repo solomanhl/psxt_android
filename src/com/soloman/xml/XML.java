@@ -60,6 +60,8 @@ public class XML extends DefaultHandler {
 	String kaohechenji = "";
 	//主审评委
 	String expert_name = "";
+	//是否量化
+	String lianghua = "";
 	
 	/*这几个都不要了
 	//成果
@@ -224,6 +226,8 @@ public class XML extends DefaultHandler {
 		kaohechenji = "";
 		//主审评委
 		expert_name = "";
+		//是否量化
+		lianghua = "";
 		
 		/*成果论文获奖不要了
 		// 成果
@@ -298,6 +302,9 @@ public class XML extends DefaultHandler {
 		
 		//主审评委
 		expert_name = attr.getValue("expert_name");
+		
+		//是否量化
+		lianghua = attr.getValue("lianghua");
 
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		try {
@@ -339,6 +346,8 @@ public class XML extends DefaultHandler {
 			map.put("jibenchengzhi", new String(jibenchengzhi.getBytes(), "utf-8"));
 			
 			map.put("expert_name", new String(expert_name.getBytes(), "utf-8"));
+			
+			map.put("lianghua", new String(lianghua.getBytes(), "utf-8"));
 			
 			
 			//加入一览表和照片

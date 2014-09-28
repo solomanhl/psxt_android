@@ -34,12 +34,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class Tab_Layout5 extends Activity {
 	private Global_var appState; // 获得全局变量;
 
+	private RelativeLayout lianghua, bulianghua;
 	private TextView textView_cpid5, textView_cpname5, textView_cpvotestate5, textView_cpcompany5;
 	private EditText textView_cpfenshu1, textView_cpfenshu2,
 			textView_cpfenshu3, textView_cpzongfen;
@@ -48,6 +50,8 @@ public class Tab_Layout5 extends Activity {
 			radioButton_agree_yijian, radioButton_against_yijian;
 	private Button button_vote, button_cancelvote, button_pinfensave, button_xiaozuyijian,
 			button_zhengce5, button_zhengce5_2, button_czsm5, button_czsm5_2;
+	
+	private RadioButton radio_gerentongyi, radio_gerenbutongyi;
 
 	private TextView textView_pogeyijian;
 	private EditText textView_cppogeyijian;
@@ -76,6 +80,13 @@ public class Tab_Layout5 extends Activity {
 			// 评分阶段
 			setContentView(R.layout.tab_layout5_pinfen);
 
+			lianghua =  (RelativeLayout) findViewById(R.id.lianghua);
+			bulianghua =  (RelativeLayout) findViewById(R.id.bulianghua);
+					
+			
+			radio_gerentongyi = (RadioButton) findViewById(R.id.radio_gerentongyi);
+			radio_gerenbutongyi = (RadioButton) findViewById(R.id.radio_gerenbutongyi);
+			
 			textView_cpid5 = (TextView) findViewById(R.id.textView_cpid5);
 			textView_cpname5 = (TextView) findViewById(R.id.textView_cpname5);
 			textView_cpzongfen = (EditText) findViewById(R.id.textView_cpzongfen);
@@ -366,8 +377,15 @@ public class Tab_Layout5 extends Activity {
 			textView_cppogeyijian.setText("");
 			radio_tongyi.setChecked(true);
 			
-
-			
+			if ("量化".equals(appState.peopleList.get(appState.people_cur).get("lianghua").toString()) ) {
+				appState.lianghua = true;
+				lianghua.setVisibility(View.VISIBLE);
+				bulianghua.setVisibility(View.INVISIBLE);
+			} else {
+				appState.lianghua = false;
+				lianghua.setVisibility(View.INVISIBLE);
+				bulianghua.setVisibility(View.VISIBLE);
+			}
 			
 			
 
@@ -403,7 +421,23 @@ public class Tab_Layout5 extends Activity {
 			cursor = appState.queryTable(appState.peopleList.get(appState.people_cur).get("id").toString());
 			if (cursor != null && cursor.getCount() > 0) {// 已经评分了
 				cursor.moveToNext();
-				textView_cpzongfen.setText(cursor.getString(1));
+				
+				if (appState.lianghua ) {	//量化
+					textView_cpzongfen.setText(cursor.getString(1));
+				} else {	//不量化
+					if ( "yes".equals(cursor.getString(1))) {
+						radio_gerentongyi.setChecked(true);
+						appState.gerenyijian = "yes";
+					} else if ("no".equals(cursor.getString(1)) ) {
+						radio_gerenbutongyi.setChecked(true);
+						appState.gerenyijian = "no";
+					} else {
+						radio_gerentongyi.setChecked(true);
+						appState.gerenyijian = "yes";
+					}
+				}
+				
+				
 				textView_cpfenshu1.setText(cursor.getString(6));
 				textView_cpfenshu2.setText(cursor.getString(7));
 				textView_cpfenshu3.setText(cursor.getString(8));
@@ -852,6 +886,18 @@ public class Tab_Layout5 extends Activity {
 		Log.i("info", "点击不同意");
 		appState.pogebutton = "no";// 不同意
 	}
+	
+	// 量化同意radio点击事件
+		public void radio_gerentongyi_onclick(View target) {
+			Log.i("info", "点击同意");
+			appState.gerenyijian = "yes";// 同意
+		}
+
+		// 量化不同意radio点击事件
+		public void radio_gerenbutongyi_onclick(View target) {
+			Log.i("info", "点击不同意");
+			appState.gerenyijian = "no";// 不同意
+		}
 
 	// 查看政策
 	public void button_zhengce5_onclick(View target) throws Exception {
@@ -1111,6 +1157,8 @@ public class Tab_Layout5 extends Activity {
 //			}
 //		} else {
 			// 非破格
+		
+		if (appState.lianghua ) {	//量化评分模式
 			if (textView_cpfenshu1.getText() != null
 					&& textView_cpfenshu1.length() > 0
 					&& Integer.valueOf(textView_cpfenshu1.getText().toString()) <= 20
@@ -1188,6 +1236,43 @@ public class Tab_Layout5 extends Activity {
 				toast.setGravity(Gravity.CENTER, 0, 0);
 				toast.show();
 			}
+		} else {	//不需要量化评分
+			// 写数据库
+			//appState.getDB();
+			cursor = appState.queryTable(appState.peopleList.get(appState.people_cur).get("id").toString());
+			if (cursor == null || cursor.getCount() == 0) {
+				// 如果沒保存過，添加
+				appState.add(appState.peopleList.get(appState.people_cur).get("id").toString(), // id
+						//textView_cpzongfen.getText().toString(), // 评分
+						appState.gerenyijian,	//不量化评分，总分字段用作个人意见
+						textView_cppogeyijian.getText().toString(), // 破格意见
+						appState.pogebutton, // 破格选择按钮
+						"未投票", "0", // 提交状态（保存/提交评分/保存投票/提交投票）0 1 2 3
+						"0",// 分数1
+						"0",// 分数2
+						"0"// 分数3
+						);
+			}else{
+				//如果添加過，更新
+				appState.Update_people(appState.peopleList.get(appState.people_cur).get("id").toString(), // id
+						//textView_cpzongfen.getText().toString(), // 评分
+						appState.gerenyijian,	//不量化评分，总分字段用作个人意见
+						textView_cppogeyijian.getText().toString(), // 破格意见
+						appState.pogebutton, // 破格选择按钮
+						"未投票", "0",// 提交状态（保存/提交评分/保存投票/提交投票）0 1 2 3
+						"0",// 分数1
+						"0",// 分数2
+						"0"// 分数3
+						);
+			}
+			Toast toast = Toast.makeText(getApplicationContext(), "保存成功！",
+					Toast.LENGTH_SHORT);
+			toast.setGravity(Gravity.CENTER, 0, 0);
+			toast.show();
+			
+			cursor.close();
+		}
+			
 //		}// end 非破格
 
 		
@@ -1467,11 +1552,19 @@ public class Tab_Layout5 extends Activity {
 		String poge = cursor.getString(3);
 		String content = cursor.getString(2);
 		String total = cursor.getString(1);
+		String geren = ""; //个人意见
 		String tmp = "接收失败";
 		
 		
 		cursor.close();
 		appState.dbClose();
+		
+		if (appState.lianghua) {	//量化评分模式
+			
+		} else {	//非量化评分模式
+			geren = total;	//非量化评分模式，数据库总分total字段存的是个人意见 yes，no
+			total = "0";
+		}
 
 		StringBuilder dataTransformb = new StringBuilder();
 		dataTransformb.append( "pwhid=" + URLEncoder.encode(pwhid) //评委会
@@ -1483,6 +1576,7 @@ public class Tab_Layout5 extends Activity {
 			dataTransformb.append( "{\"id\":\"" + URLEncoder.encode(id) + "\","// 参评人
 					+ "\"poge\":\"" + URLEncoder.encode(poge) + "\","// 破格
 					+ "\"content\":\"" + URLEncoder.encode(content) + "\","  //破格意见
+					+ "\"gerenyijian\":\"" + URLEncoder.encode(geren) + "\","  //个人意见
 					+ "\"total\":\"" + URLEncoder.encode(total) + "\""  //总分
 					+ "}]");
 		

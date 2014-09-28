@@ -30,8 +30,7 @@
         android:singleLine="true"
         android:text="1002030"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ff0000ff"
-        android:textSize="38dip"
+        android:textSize="38sp"
         android:textStyle="italic" >
     </TextView>
 
@@ -57,7 +56,7 @@
         android:singleLine="true"
         android:text="马庆栋"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="38dip"
+        android:textSize="38sp"
         android:textStyle="italic" />
 
     <TextView
@@ -68,151 +67,139 @@
         android:paddingTop="32dip"
         android:text="工作单位:"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="28sp"
+        android:textSize="38sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textView_cpcompany5"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/textView_company5"
-        android:layout_toLeftOf="@+id/textView_fenshu3"
         android:layout_toRightOf="@+id/textView_company5"
         android:background="#80ffffff"
         android:paddingLeft="16dip"
         android:text="danwei...."
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="26sp"
+        android:textSize="32sp"
         android:textStyle="italic" />
 
-    <TextView
-        android:id="@+id/textView_pinfen"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:id="@+id/imageView_biaozhun"
+        android:layout_width="540dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:paddingLeft="128dip"
-        android:text="评分："
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ff0000ff"
-        android:textSize="48sp"
-        android:textStyle="bold" />
+        android:layout_marginLeft="32dip"
+        android:layout_toRightOf="@+id/textView_cpcompany5"
+        android:scaleType="fitXY"
+        android:src="@drawable/pinfenbiaozhun" />
 
     <TextView
         android:id="@+id/textView_fenshu1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_pinfen"
-        android:layout_below="@+id/textView_pinfen"
-        android:paddingLeft="128dip"
+        android:layout_alignLeft="@+id/textView_cpzongfen"
+         android:layout_below="@+id/textView_cpzongfen"
+        android:layout_marginTop="50dp"
+        android:layout_toRightOf="@+id/imageView_biaozhun"
         android:text="项目1:"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffff0000"
-        android:textSize="48dip" />
+        android:textSize="32sp" />
 
     <EditText
         android:id="@+id/textView_cpfenshu1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_fenshu1"
-        android:layout_toRightOf="@+id/textView_fenshu1"
+        android:layout_alignLeft="@+id/textView_fenshu1"
+        android:layout_below="@+id/textView_fenshu1"
         android:background="#8075e4e5"
         android:ems="2"
         android:inputType="number"
-        android:maxLength="3"
-        android:paddingLeft="16dip"
+        android:maxLength="2"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="48dip"
+        android:textSize="32sp"
         android:textStyle="italic" />
 
     <TextView
         android:id="@+id/textView_fenshu2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_pinfen"
-        android:layout_below="@+id/textView_fenshu1"
-        android:paddingLeft="128dip"
-        android:paddingTop="16dip"
+        android:layout_alignLeft="@+id/textView_cpfenshu1"
+        android:layout_below="@+id/textView_cpfenshu1"
+        android:layout_marginTop="50dp"
         android:text="项目2:"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffff0000"
-        android:textSize="48dip" />
+        android:textSize="32sp" />
 
     <EditText
         android:id="@+id/textView_cpfenshu2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_fenshu2"
-        android:layout_toRightOf="@+id/textView_fenshu2"
+        android:layout_alignLeft="@+id/textView_cpfenshu1"
+        android:layout_below="@+id/textView_fenshu2"
         android:background="#8075e4e5"
         android:ems="2"
         android:inputType="number"
-        android:maxLength="3"
-        android:paddingLeft="16dip"
+        android:maxLength="2"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="48dip"
+        android:textSize="32sp"
         android:textStyle="italic" />
 
     <TextView
         android:id="@+id/textView_fenshu3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_pinfen"
-        android:layout_below="@+id/textView_fenshu2"
-        android:paddingLeft="128dip"
-        android:paddingTop="16dip"
+        android:layout_alignLeft="@+id/textView_cpfenshu2"
+        android:layout_below="@+id/textView_cpfenshu2"
+        android:layout_marginTop="70dp"
         android:text="项目3:"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="#ffff0000"
-        android:textSize="48dip" />
+        android:textSize="32sp" />
 
     <EditText
         android:id="@+id/textView_cpfenshu3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_fenshu3"
-        android:layout_toRightOf="@+id/textView_fenshu3"
+        android:layout_alignLeft="@+id/textView_cpfenshu2"
+        android:layout_below="@+id/textView_fenshu3"
         android:background="#8075e4e5"
         android:ems="2"
         android:inputType="number"
-        android:maxLength="3"
-        android:paddingLeft="16dip"
+        android:maxLength="2"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="48dip"
+        android:textSize="32sp"
         android:textStyle="italic" />
 
     <TextView
         android:id="@+id/textView_zongfen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_pinfen"
-        android:layout_below="@+id/textView_fenshu3"
-        android:paddingLeft="128dip"
-        android:paddingTop="16dip"
+        android:layout_marginLeft="16dip"
+        android:layout_toRightOf="@+id/imageView_biaozhun"
         android:text="总分 : "
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="48dip"
+        android:textColor="#ff0000ff"
+        android:textSize="32sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/textView_cpzongfen"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_zongfen"
-        android:layout_toRightOf="@+id/textView_zongfen"
-        android:background="#8075e4e5"
+        android:layout_alignLeft="@+id/textView_zongfen"
+        android:layout_below="@+id/textView_zongfen"
+        android:layout_toRightOf="@+id/imageView_biaozhun"
+        android:background="#80f2f6f5"
         android:editable="false"
-        android:ems="2"
+        android:ems="3"
         android:enabled="false"
         android:inputType="number"
         android:maxLength="3"
-        android:paddingLeft="16dip"
         android:singleLine="true"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="48dip"
+        android:textColor="#ff0000ff"
+        android:textSize="32sp"
         android:textStyle="italic" />
 
     <TextView
@@ -220,25 +207,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/textView_zongfen"
+        android:layout_below="@+id/button_chakan1"
+        android:layout_marginTop="48dp"
         android:text="破格意见："
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#ff0000ff"
-        android:textSize="48dip"
+        android:textSize="38sp"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/textView_cppogeyijian"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/radioGroup_poge"
         android:layout_below="@+id/textView_pogeyijian"
         android:background="#8075e4e5"
-        android:lines="2"
+        android:lines="4"
         android:maxLength="40"
-        android:maxLines="2"
+        android:maxLines="4"
         android:paddingLeft="16dip"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textSize="32dip"
+        android:textSize="32sp"
         android:textStyle="italic" >
     </EditText>
 
@@ -258,7 +247,7 @@
             android:onClick="radio_tongyi_onclick"
             android:text="同意"
             android:textColor="#ffff0000"
-            android:textSize="48dip" />
+            android:textSize="38sp" />
 
         <RadioButton
             android:id="@+id/radio_butongyi"
@@ -267,7 +256,7 @@
             android:onClick="radio_butongyi_onclick"
             android:text="不同意"
             android:textColor="#ffff0000"
-            android:textSize="48dip" />
+            android:textSize="38sp" />
     </RadioGroup>
 
     <Button
@@ -291,52 +280,25 @@
         android:textSize="24sp" />
 
     <Button
+        android:id="@+id/button_czsm5"
+        android:layout_width="48dp"
+        android:layout_height="172dp"
+        android:layout_above="@+id/button_zhengce5"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="32sp"
+        android:background="@drawable/czshm_selector"
+        android:onClick="button_czsm5_onclick" />
+
+    <Button
         android:id="@+id/button_chakan1"
         android:layout_width="180sp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_company5"
-        android:layout_marginTop="32sp"
+        android:layout_marginTop="64sp"
         android:background="@drawable/btn_selector"
         android:onClick="button_chakan1_onclick"
         android:text="查看已评人员"
         android:textColor="#ffffffff"
-        android:textSize="24sp" />
-
-    <Button
-        android:id="@+id/button_biaozhun"
-        android:layout_width="140sp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_cpfenshu1"
-        android:layout_alignBottom="@+id/textView_cpfenshu1"
-        android:layout_marginLeft="32dp"
-        android:layout_toRightOf="@+id/textView_cpfenshu1"
-        android:background="@drawable/btn2_selector"
-        android:onClick="button_biaozhun_onclick"
-        android:text="评分标准1..."
-        android:textSize="24sp" />
-
-    <Button
-        android:id="@+id/button_biaozhun2"
-        android:layout_width="140sp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_cpfenshu2"
-        android:layout_alignBottom="@+id/textView_cpfenshu2"
-        android:layout_alignLeft="@+id/button_biaozhun"
-        android:background="@drawable/btn2_selector"
-        android:onClick="button_biaozhun2_onclick"
-        android:text="评分标准2..."
-        android:textSize="24sp" />
-
-    <Button
-        android:id="@+id/button_biaozhun3"
-        android:layout_width="140sp"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView_cpfenshu3"
-        android:layout_alignBottom="@+id/textView_cpfenshu3"
-        android:layout_alignLeft="@+id/button_biaozhun"
-        android:background="@drawable/btn2_selector"
-        android:onClick="button_biaozhun3_onclick"
-        android:text="评分标准3..."
         android:textSize="24sp" />
 
 </RelativeLayout>
