@@ -1785,6 +1785,8 @@ public class Tab_Layout5 extends Activity {
 					Intent it = new Intent(this, searchWithListActivity.class);
 	    			startActivity(it);
 	    			finish();
+				}else {
+					return super.onKeyDown(keyCode, event);
 				}
 				return true;
 			} else {

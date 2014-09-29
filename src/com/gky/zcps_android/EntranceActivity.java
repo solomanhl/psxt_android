@@ -1708,13 +1708,20 @@ public class EntranceActivity extends Activity {
 
 			}
 
+			private int cnt = 0;
+			
 			@Override
 			public void run() {
 				while (runThread && !this.isInterrupted() ) {
 					System.out.println("updateWorkfloatThread run again");
-					updateHandler("selectWorkfoat");
+					cnt ++;
+					if ( cnt >150) {
+						updateHandler("selectWorkfoat");
+						cnt = 0;
+					}
+					
 				try {
-					Thread.sleep(15*1000);
+					Thread.sleep(100);
 				} catch (InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
