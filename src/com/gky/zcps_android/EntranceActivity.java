@@ -256,7 +256,8 @@ public class EntranceActivity extends Activity {
 
 					// 要访问的web servlet
 					// 注意：IP和端口是本地的 需要换成你的IP和端口
-					String servletUrl = appState.HttpHead + "/expert/complete";
+					String servletUrl = appState.HttpHead + "/expert/complete?pwid=" + URLEncoder.encode(appState.pinweiName);
+					
 					// 完整的请求路径
 					String requestUrl = servletUrl;
 					System.out.println("url===" + requestUrl);
@@ -304,35 +305,7 @@ public class EntranceActivity extends Activity {
 								appState.people_cur = 0;
 								
 								if (appState.pinshenjieshu) {
-									appState.getDB();
-									//评审结束，退出，清空
-									appState.clearTable("canpinrenyuan");// 清空数据库
-									appState.clearTable("failed");// 清空数据库
-									appState.clearTable("pwh");// 清空数据库
-									appState.dbClose();
-									file.delFolder(appState.SDpath + "psxt");
-									
-									// 弹出一个提示框
-									new AlertDialog.Builder(this)
-											.setTitle("信息")
-											.setMessage("本次评审会已经结束，请退出！")
-											/*
-											 * .setNegativeButton("取消", new
-											 * DialogInterface.OnClickListener() {
-											 * 
-											 * @Override public void onClick(DialogInterface
-											 * dialog, int which) {
-											 * 
-											 * } })
-											 */
-											.setPositiveButton("确定",
-													new DialogInterface.OnClickListener() {
-														public void onClick(
-																DialogInterface dialog,
-																int whichButton) {
-															finish();
-														}
-													}).show();
+									exitAPP();
 								}
 							}else if ("正在写意见".equals(tmp)){
 								appState.workfloat = "xiaozuyijian";
@@ -356,36 +329,39 @@ public class EntranceActivity extends Activity {
 								button_xiaozuyijian.setVisibility(View.VISIBLE);
 								button_xiaozuyijian.setEnabled(true);
 								}
-							}else if("投票结束".equals(tmp)){
-								appState.getDB();
-								//评审结束，退出，清空
-								appState.clearTable("canpinrenyuan");// 清空数据库
-								appState.clearTable("failed");// 清空数据库
-								appState.clearTable("pwh");// 清空数据库
-								appState.dbClose();
-								file.delFolder(appState.SDpath + "psxt");
-								
-								// 弹出一个提示框
-								new AlertDialog.Builder(this)
-										.setTitle("信息")
-										.setMessage("本次评审会已经结束，请退出！")
-										/*
-										 * .setNegativeButton("取消", new
-										 * DialogInterface.OnClickListener() {
-										 * 
-										 * @Override public void onClick(DialogInterface
-										 * dialog, int which) {
-										 * 
-										 * } })
-										 */
-										.setPositiveButton("确定",
-												new DialogInterface.OnClickListener() {
-													public void onClick(
-															DialogInterface dialog,
-															int whichButton) {
-														finish();
-													}
-												}).show();
+							}else if ("投票结束".equals(tmp)) {
+								exitAPP();
+							}else if("评审结束".equals(tmp)){
+								exitAPP();
+//								appState.getDB();
+//								//评审结束，退出，清空
+//								appState.clearTable("canpinrenyuan");// 清空数据库
+//								appState.clearTable("failed");// 清空数据库
+//								appState.clearTable("pwh");// 清空数据库
+//								appState.dbClose();
+//								file.delFolder(appState.SDpath + "psxt");
+//								
+//								// 弹出一个提示框
+//								new AlertDialog.Builder(this)
+//										.setTitle("信息")
+//										.setMessage("本次评审会已经结束，请退出！")
+//										/*
+//										 * .setNegativeButton("取消", new
+//										 * DialogInterface.OnClickListener() {
+//										 * 
+//										 * @Override public void onClick(DialogInterface
+//										 * dialog, int which) {
+//										 * 
+//										 * } })
+//										 */
+//										.setPositiveButton("确定",
+//												new DialogInterface.OnClickListener() {
+//													public void onClick(
+//															DialogInterface dialog,
+//															int whichButton) {
+//														finish();
+//													}
+//												}).show();
 							}
 							
 							
@@ -403,6 +379,49 @@ public class EntranceActivity extends Activity {
 					}
 	}
 	
+	
+	public void exitAPP () {
+		if (appState.xianchangfenzu){
+			runThread = false;//停止线程
+			try {
+				updateworkfloatT.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			updateworkfloatT.interrupt();
+		}
+		
+		appState.getDB();
+		//评审结束，退出，清空
+		appState.clearTable("canpinrenyuan");// 清空数据库
+		appState.clearTable("failed");// 清空数据库
+		appState.clearTable("pwh");// 清空数据库
+		appState.dbClose();
+		file.delFolder(appState.SDpath + "psxt");
+		
+		// 弹出一个提示框
+		new AlertDialog.Builder(this)
+				.setTitle("信息")
+				.setMessage("本次评审会已经结束，请退出！")
+				/*
+				 * .setNegativeButton("取消", new
+				 * DialogInterface.OnClickListener() {
+				 * 
+				 * @Override public void onClick(DialogInterface
+				 * dialog, int which) {
+				 * 
+				 * } })
+				 */
+				.setPositiveButton("确定",
+						new DialogInterface.OnClickListener() {
+							public void onClick(
+									DialogInterface dialog,
+									int whichButton) {
+								finish();
+							}
+						}).show();
+	}
 
 	public Thread updateworkfloatT;
 	public boolean runThread;
