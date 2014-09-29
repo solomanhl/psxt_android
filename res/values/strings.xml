@@ -3,7 +3,11 @@
     <string name="app_name">评审系统</string>
     <string name="menu_settings">设置</string>
     <string name="about">武汉市人社局职称评审系统，Android评审终端\n开发单位：武汉市工程科学技术研究院\n开发人员：贺亮\n2012年12月 ~ 2014年10月</string>
+<<<<<<< HEAD
     <string name="ver">3.4.1</string>
+=======
+    <string name="ver">3.3.3</string>
+>>>>>>> parent of baaaef4... 第三版第8次 V3.3.4
     
     
     <string-array name="xiaozuyijianspinner">

@@ -60,8 +60,7 @@ public class MainActivity extends TabActivity {
 
 		appState.firstIn = false;
 		
-		//现场分组的评分阶段不让左右切换    投票  寄语都可以 
-		if (!appState.xianchangfenzu || "toupiao".equals(appState.workfloat) || "jiyu".equals(appState.workfloat) ) {  
+		if (!appState.xianchangfenzu) {  //现场分组的时候不让左右切换
 		// 定义ViewFlipper
 		viewFlipper1 = (ViewFlipper) findViewById(R.id.viewFlipper1);		
 		
@@ -218,13 +217,12 @@ public class MainActivity extends TabActivity {
 	// onTouchEvent()-----------------------------------
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		// 不是现场分组的评分阶段才有     投票阶段都有  寄语阶段都有
-		if (!appState.xianchangfenzu || "toupiao".equals(appState.workfloat) || "jiyu".equals(appState.workfloat) ) { 
+		if (!appState.xianchangfenzu) { // 不是现场分组才有
 			if (gestureDetector.onTouchEvent(event))
 				return true;
 			else
 				return false;
-		} else {  //现场分组的评分阶段没有这个事件
+		} else {  //现场分组没有这个事件
 			return false;
 		}
 	}

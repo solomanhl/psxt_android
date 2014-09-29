@@ -957,8 +957,6 @@ public class EntranceActivity extends Activity {
 			button_xiaozuyijian.setEnabled(false);
 			
 			new updateOpinionThread().start();
-			
-			
 		}
 	
 		// 小组意见前更新进程----------------------------------------
@@ -1028,14 +1026,11 @@ public class EntranceActivity extends Activity {
 						// 处理进度条（当前）/（总步骤）
 						updateHandler( "successful" );
 						appState.tab5_state = "xiaozuyijian";
-						
-						
-						
 						Intent it = new Intent(EntranceActivity.this, xiaozuyijianActicity.class);
 						startActivity(it);
 				}
 			
-				
+				button_xiaozuyijian.setEnabled(true);
 		}
 		
 	
@@ -1598,10 +1593,6 @@ public class EntranceActivity extends Activity {
 					// button_start.setEnabled(true);
 					progressBar1.setVisibility(View.GONE);// 0可见 4隐藏 8gone
 					info.setText(userName.getText() + "已登录");
-					
-					if ("xiaozuyijian".equals(appState.workfloat) ) {
-						button_xiaozuyijian.setEnabled(true);
-					}
 				} else if ("selectWorkfoat".equals((String) msg.obj)) {
 					if (appState.xianchangfenzu) {
 						getWokfloat();
