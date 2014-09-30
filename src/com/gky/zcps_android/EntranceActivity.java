@@ -1049,7 +1049,7 @@ public class EntranceActivity extends Activity {
 						startActivity(it);
 				}
 			
-				button_xiaozuyijian.setEnabled(true);
+				
 		}
 		
 	
@@ -1612,6 +1612,9 @@ public class EntranceActivity extends Activity {
 					// button_start.setEnabled(true);
 					progressBar1.setVisibility(View.GONE);// 0¿É¼û 4Òþ²Ø 8gone
 					info.setText(userName.getText() + "ÒÑµÇÂ¼");
+					
+					if ("xiaozuyijian".equals(appState.workfloat))
+						button_xiaozuyijian.setEnabled(true);
 				} else if ("selectWorkfoat".equals((String) msg.obj)) {
 					if (appState.xianchangfenzu) {
 						getWokfloat();
