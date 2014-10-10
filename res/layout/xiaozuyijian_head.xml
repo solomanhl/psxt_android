@@ -68,7 +68,8 @@
         android:layout_toRightOf="@+id/pinwei_head"
         android:gravity="center"
         android:text="分数/意见"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:visibility="gone" />
 
     <!-- 小组评分 -->
     <TextView
@@ -80,7 +81,8 @@
         android:layout_toRightOf="@+id/fenshu_head"
         android:gravity="center"
         android:text="小组评分"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/poge_head"
@@ -106,7 +108,7 @@
 
     <TextView
         android:id="@+id/xiaozuyijian_head"
-        android:layout_width="wrap_content"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginRight="4sp"
@@ -115,4 +117,14 @@
         android:text="小组意见"
         android:textSize="24sp" />
 
+    <TextView
+        android:id="@+id/toupiao_head"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/xiaozuyijian_head"
+        android:gravity="center"
+        android:text="投票"
+        android:textSize="24sp" />
 </RelativeLayout>

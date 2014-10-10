@@ -312,7 +312,8 @@ public class EntranceActivity extends Activity {
 								
 								//如果不是组长，直接跳到投票
 								if (  ! ("主任委员".equals(appState.weiyuanjibie)
-										|| "组长".equals(appState.weiyuanjibie))  ) {
+										|| "组长".equals(appState.weiyuanjibie)
+										|| "委员".equals(appState.weiyuanjibie))  ) {	//按照曲主任意见，任何评委登陆后直接进入小组意见
 									button_toupiaostart.setVisibility(View.VISIBLE);
 									button_toupiaostart.setEnabled(true);
 									button_start.setVisibility(View.INVISIBLE);
@@ -709,8 +710,8 @@ public class EntranceActivity extends Activity {
 						if ("现场分组".equals(tmpchenguoArray[3])) {
 							appState.xianchangfenzu = true;
 							appState.workfloat = "pinfen";
-							button_start.setVisibility(View.VISIBLE);
-							button_start.setEnabled(true);
+//							button_start.setVisibility(View.VISIBLE);
+//							button_start.setEnabled(true);
 							selectWorkfoat();
 //							//现场分组直接跳到搜索界面，投票阶段除外
 //							if ("pinfen".equals(appState.workfloat)){
@@ -994,6 +995,7 @@ public class EntranceActivity extends Activity {
 		private void updateOpinion() {
 
 			String applicant = "applicant_one.xml";
+//			String applicant = "applicant.xml";
 				if (downloadfinish) {
 
 					
@@ -1011,6 +1013,9 @@ public class EntranceActivity extends Activity {
 									"?pwid=" + URLEncoder.encode(appState.pinweiName)
 										+ "&code=\'\'" 
 											+ "&type=2");
+						
+//						f = appState.dl_file("conference/", "applicant.xml", "?pwid="
+//								+ URLEncoder.encode(appState.pinweiName) + "&type=0");					
 						
 						
 						// 处理进度条（当前）/（总步骤）
@@ -1103,7 +1108,7 @@ public class EntranceActivity extends Activity {
 		}
 			if (downloadfinish) {
 
-				if ( download_score() ){	//调试时屏蔽
+//				if ( download_score() ){	//调试时屏蔽
 
 					updateHandler( "0/4");
 				// 再下一次基本信息表
@@ -1197,7 +1202,8 @@ public class EntranceActivity extends Activity {
 					appState.tab5_state = "toupiao";
 					
 					
-					Intent it = new Intent(EntranceActivity.this, MainActivity.class);
+//					Intent it = new Intent(EntranceActivity.this, MainActivity.class);
+					Intent it = new Intent(EntranceActivity.this, xiaozuyijianActicity.class);
 
 					Bundle bundle = new Bundle();
 					bundle.putString("jiyu", "普通");
@@ -1205,14 +1211,14 @@ public class EntranceActivity extends Activity {
 
 					startActivity(it);
 				} else {
-					runThread = true;
-					updateworkfloatT.start();
+//					runThread = true;
+//					updateworkfloatT.start();
 //					Toast toast = Toast.makeText(getApplicationContext(),
 //							"正在等待其他评委完成，请稍后...", Toast.LENGTH_LONG);
 //					toast.setGravity(Gravity.CENTER, 0, 0);
 //					toast.show();
 				}
-				}	//调试时屏蔽
+//				}	//调试时屏蔽
 			}
 		
 		
@@ -1728,8 +1734,10 @@ public class EntranceActivity extends Activity {
 				while (runThread && !this.isInterrupted() ) {
 					System.out.println("updateWorkfloatThread run again");
 					cnt ++;
-					if ( cnt >150) {
+					if ( cnt == 1) {
 						updateHandler("selectWorkfoat");
+					}
+					if ( cnt >150) {
 						cnt = 0;
 					}
 					

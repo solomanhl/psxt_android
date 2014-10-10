@@ -68,8 +68,9 @@
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/pinwei1"
         android:gravity="center"
-        android:text="分数"
-        android:textSize="20sp" />
+        android:text="分数/意见"
+        android:textSize="20sp"
+        android:visibility="gone" />
 
     <!-- 小组评分 -->
     <TextView
@@ -80,8 +81,9 @@
         android:layout_marginRight="4sp"
         android:layout_toRightOf="@+id/fenshu1"
         android:gravity="center"
-
-        android:textSize="24sp" />
+		 android:text="小组评分"
+        android:textSize="24sp"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/poge1"
@@ -107,13 +109,24 @@
 
     <Spinner
         android:id="@+id/xiaozuyijian1"
-        android:layout_width="match_parent"
+        android:layout_width="100sp"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginRight="4sp"
         android:layout_toRightOf="@+id/ceshi1"
         android:gravity="center"
         android:entries="@array/xiaozuyijianspinner"
+        android:textSize="48sp" />
+    
+    <Spinner
+        android:id="@+id/toupiao1"
+        android:layout_width="100sp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="4sp"
+        android:layout_toRightOf="@+id/xiaozuyijian1"
+        android:gravity="center"
+        android:entries="@array/toupiaospinner"
         android:textSize="48sp" />
 
 </RelativeLayout>

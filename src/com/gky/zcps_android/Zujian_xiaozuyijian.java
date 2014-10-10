@@ -23,4 +23,5 @@ public class Zujian_xiaozuyijian {
 	public TextView poge1;
 	public TextView ceshi1;
 	public Spinner xiaozuyijian1;
+	public Spinner toupiao1;
 }

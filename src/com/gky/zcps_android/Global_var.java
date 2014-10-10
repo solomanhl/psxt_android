@@ -533,8 +533,8 @@ public class Global_var extends Application {
 		database.add(id, pinfen, pogeyijian, poge, toupiao, tijiaostate,f1 ,f2, f3);
 	}
 	
-	public void add(String id, String xiaozufen, String xiaozuyijian){
-		database.add( id,  xiaozufen,  xiaozuyijian);
+	public void add(String id, String xiaozufen, String xiaozuyijian, String toupiao){
+		database.add( id,  xiaozufen,  xiaozuyijian, toupiao);
 	}
 	
 	public Cursor getToupiao(){
@@ -547,8 +547,8 @@ public class Global_var extends Application {
 		database.Update_people(id, pinfen, pogeyijian, poge, toupiao, tijiaostate,f1 ,f2, f3);
 	}
 	
-	public void Update_people(String id,  String xiaozufen, String xiaozuyijian){
-		database.Update_people(id,  xiaozufen, xiaozuyijian);
+	public void Update_people(String id,  String xiaozufen, String xiaozuyijian, String toupiao){
+		database.Update_people(id,  xiaozufen, xiaozuyijian, toupiao);
 	}
 	
 	public void Update_tijiao(String id,  String tijiaostate){

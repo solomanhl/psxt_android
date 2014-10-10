@@ -52,7 +52,7 @@ public class Database {
 					"pinfen varchar(3), " + // 评分 0-100
 					"pogeyijian varchar(100), " + // 破格意见
 					"poge varchar(6), " + // 破格 同意 不同意
-					"toupiao varchar(6), " +// 投票同意  反对 弃权 未投票
+					"toupiao varchar(6), " +// 投票赞成  反对 弃权 未投票
 					"tijiaostate varchar(1), " +//提交状态（保存/提交评分/保存投票/提交投票）0 1 2 3					
 					"f1 varchar(3), " +	//分数1
 					"f2 varchar(3), " +	//分数2
@@ -124,12 +124,13 @@ public class Database {
 	}
 	
 	//现场分组写小组意见时，添加小组分和小组意见
-	public long add(String id, String xiaozufen, String xiaozuyijian) {
+	public long add(String id, String xiaozufen, String xiaozuyijian, String toupiao) {
 		///id 评分 破格 投票 提交状态（未提交/提交评分/提交投票）
 		ContentValues cv = new ContentValues();
 		cv.put("id", id);
 		cv.put("xiaozufen", xiaozufen);
 		cv.put("xiaozuyijian", xiaozuyijian);
+		cv.put("toupiao", toupiao);
 
 		System.out.println("DB.add " + table_people);
 		return SQLdb.insert(table_people, null, cv);
@@ -189,10 +190,11 @@ public class Database {
 	}
 	
 	// 修改信息 现场分组时的小组分和小组意见
-		public int Update_people(String id,  String xiaozufen, String xiaozuyijian) {
+		public int Update_people(String id,  String xiaozufen, String xiaozuyijian, String toupiao) {
 			ContentValues cv = new ContentValues();
 			cv.put("xiaozufen", xiaozufen);
 			cv.put("xiaozuyijian", xiaozuyijian);
+			cv.put("toupiao", toupiao);
 			String[] args = { String.valueOf(id) };
 			return SQLdb.update(table_people, cv, "id=?", args);
 		}
