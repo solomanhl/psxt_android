@@ -99,10 +99,11 @@ public class xiaozuyijianActicity extends Activity{
 					}
 //					if ( !"".equals(cursor.getString(10)) && cursor.getString(10) !=null ) {	//10小组意见
 //						//xiaozuyijianArray [i] = cursor.getString(10);						
-//					}
-					xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
+//					}					
 				}		
 				cursor.close();
+				
+				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
 			}else if ("toupiao".equals(appState.workfloat)){
 				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
 			}
