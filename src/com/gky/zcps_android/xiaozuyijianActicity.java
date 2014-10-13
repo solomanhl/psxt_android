@@ -10,9 +10,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.gky.zcps_android.EntranceActivity.updateWorkfloatThread;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -790,9 +787,17 @@ public class xiaozuyijianActicity extends Activity{
 					appState.workfloat = "pinfen";
 				}else if ("正在投票".equals(tmp)){
 					if ("xiaozuyijian".equals(appState.workfloat)){
+						try {
+							updateworkfloatT.sleep(1);
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						updateworkfloatT.interrupt();
+						
 						appState.workfloat = "toupiao";
 						appState.closeMain = true;//提交成功才关闭主窗体
-						finish(); //返回到入口界面
+						xiaozuyijianActicity.this.finish();; //返回到入口界面
 					}
 					
 					if (appState.pinshenjieshu) {
