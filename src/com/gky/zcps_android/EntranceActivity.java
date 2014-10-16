@@ -727,8 +727,12 @@ public class EntranceActivity extends Activity {
 						}else{						
 							appState.xianchangfenzu = false;
 						}
-						// 下载资料
+						
+						if (!appState.xianchangfenzu){  //不是现场分组
+							// 下载资料
 							button_download_onclick(target);// 另开线程
+						}
+						
 
 
 						// 查看政策 纪律 另开线程
@@ -996,7 +1000,7 @@ public class EntranceActivity extends Activity {
 
 			String applicant = "applicant_one.xml";
 //			String applicant = "applicant.xml";
-				if (downloadfinish) {
+//				if (downloadfinish) {
 
 					
 					// 再下一次基本信息表
@@ -1052,7 +1056,7 @@ public class EntranceActivity extends Activity {
 						appState.tab5_state = "xiaozuyijian";
 						Intent it = new Intent(EntranceActivity.this, xiaozuyijianActicity.class);
 						startActivity(it);
-				}
+//				}
 			
 				
 		}
@@ -1106,7 +1110,7 @@ public class EntranceActivity extends Activity {
 		}else{
 			applicant = "applicant.xml";
 		}
-			if (downloadfinish) {
+//			if (downloadfinish) {
 
 //				if ( download_score() ){	//调试时屏蔽
 
@@ -1219,7 +1223,7 @@ public class EntranceActivity extends Activity {
 //					toast.show();
 				}
 //				}	//调试时屏蔽
-			}
+//			}
 		
 		
 	}

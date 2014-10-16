@@ -72,8 +72,11 @@ public class xiaozuyijianActicity extends Activity{
 		// 此处甚至可以不需要设置Looper，因为 Handler默认就使用当前线程的Looper
 		messageHandler = new MessageHandler(looper);
 		
-		updateworkfloatT = new updateWorkfloatThread();
-		updateworkfloatT.start();
+		if ("xiaozuyijian".equals(appState.workfloat)){
+			updateworkfloatT = new updateWorkfloatThread();
+			updateworkfloatT.start();
+		}
+		
 	}
 	
 	
