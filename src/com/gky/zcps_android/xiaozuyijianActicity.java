@@ -117,6 +117,17 @@ public class xiaozuyijianActicity extends Activity{
 	public void onStop () {
 		super.onStop();
 		
+		try {
+			updateworkfloatT.sleep(1);
+			if (updateworkfloatT != null){
+				updateworkfloatT.interrupt();
+			}			
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		if (!appState.closeMain){
 			for (int i = 0; i< appState.people_total; i++) {
 				cursor = appState.queryTable(appState.peopleList.get(i).get("id").toString() );
