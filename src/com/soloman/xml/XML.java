@@ -190,7 +190,7 @@ public class XML extends DefaultHandler {
 		currentPeople = "";
 
 		//pwhid = "";
-		pwhname = "";
+
 		// 基本信息
 		name = "";
 		id = "";
