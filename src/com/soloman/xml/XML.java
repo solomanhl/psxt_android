@@ -18,6 +18,7 @@ public class XML extends DefaultHandler {
 
 	//评委会id
 	public String pwhid = "";
+	public String pwhname = "";//评委会名称
 	//议程链接
 	public String yichen = "";
 	//基本信息
@@ -124,6 +125,8 @@ public class XML extends DefaultHandler {
 			
 			pwhid = 	attr.getValue(1);		
 			yichen = attr.getValue(2);
+			pwhname = attr.getValue("pwhname");			
+			
 		} else if ("people".equals(localName.trim())) {
 			//System.out.println("开始解析people");
 			// 获取标签的全部属性
@@ -187,6 +190,7 @@ public class XML extends DefaultHandler {
 		currentPeople = "";
 
 		//pwhid = "";
+		pwhname = "";
 		// 基本信息
 		name = "";
 		id = "";

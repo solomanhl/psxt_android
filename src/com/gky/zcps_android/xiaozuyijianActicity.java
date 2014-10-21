@@ -29,6 +29,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -52,6 +53,8 @@ public class xiaozuyijianActicity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.xiaozuyijian);
 		
+		setTitle(appState.pwhname + " （" +appState.peopleList.get(0).get("shenbaojibie").toString() + "）");
+		
 		listView_xiaozuyijian_submit = (Button) findViewById(R.id.listView_xiaozuyijian_submit);
 		
 		 xiaozufenArray  = new String [appState.people_total];
@@ -62,10 +65,10 @@ public class xiaozuyijianActicity extends Activity{
 		 for (int i=0 ;i<appState.people_total; i++){
 			 xiaozufenArray[i] = "";
 			 xiaozuyijianArray[i] = "";
-			 toupiaoArray[i] = "赞成";
+			 toupiaoArray[i] = "";
 		 }
 				 
-		updateUI();
+//		updateUI();
 		
 		// 得到当前线程的Looper实例，由于当前线程是UI线程也可以通过Looper.getMainLooper()得到
 		Looper looper = Looper.myLooper();
@@ -106,11 +109,18 @@ public class xiaozuyijianActicity extends Activity{
 				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
 			}else if ("toupiao".equals(appState.workfloat)){
 				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
+				if ("推荐".equals(xiaozuyijianArray[i] )){
+					toupiaoArray[i] = "赞成";
+	 			}else if ("不推荐".equals(xiaozuyijianArray[i] )){
+	 				toupiaoArray[i] = "反对";
+	 			}else{
+	 				toupiaoArray[i] = "赞成";
+	 			}
 			}
 			
 			lianghuaArray[i] = appState.peopleList.get(i).get("lianghua").toString();
 		}
-		
+		updateUI();
 	}
 	
 	@Override
@@ -262,6 +272,7 @@ public class xiaozuyijianActicity extends Activity{
 			map.put("expert_name", appState.peopleList.get(i).get("expert_name").toString()); //主审评委
 			//map.put("xiaozupinfen", xiaozufenArray[i]);
 			map.put("opinion", appState.scoreList.get(i).get("opinion").toString() );
+			map.put("toupiao", toupiaoArray[i] );
 			
 			if ("".equals( appState.scoreList.get(i).get("pogejielun").toString())){
 				map.put("pogejieguo", "无" );
@@ -282,7 +293,7 @@ public class xiaozuyijianActicity extends Activity{
 			//map.put("xiaozuyijian", "小组意见");
 			lst.add(map);	
 		}
-		
+		saImageItems.notifyDataSetChanged();
      }
      
      
@@ -332,6 +343,8 @@ public class xiaozuyijianActicity extends Activity{
  		 */
  		Zujian_xiaozuyijian zuJian = null;
  		
+ 		private String[] adapterData1, adapterData2; 
+ 		private ArrayAdapter<String> adapter1, adapter2;
  		
  		@Override
  		public View getView(final int position, View convertView, ViewGroup parent) {
@@ -355,6 +368,18 @@ public class xiaozuyijianActicity extends Activity{
 				zuJian.ceshi1 = (TextView) convertView.findViewById(R.id.ceshi1);
 				zuJian.xiaozuyijian1 = (Spinner) convertView.findViewById(R.id.xiaozuyijian1);	
 				zuJian.toupiao1 = (Spinner) convertView.findViewById(R.id.toupiao1);
+				
+				
+				adapterData1 = new String[] { "推荐", "不推荐", ""}; 
+				adapter1 = new ArrayAdapter<String>(xiaozuyijianActicity.this, R.layout.myspinner, adapterData1);  
+				adapter1.setDropDownViewResource(R.layout.myspinner);  
+		        zuJian.xiaozuyijian1.setAdapter(adapter1);  
+		        
+		        adapterData2 = new String[] { "赞成", "反对", "弃权"}; 
+				adapter2 = new ArrayAdapter<String>(xiaozuyijianActicity.this, R.layout.myspinner, adapterData2);  
+				adapter2.setDropDownViewResource(R.layout.myspinner);  
+		        zuJian.toupiao1.setAdapter(adapter2);  	
+
  				
 // 					if (position == 0 ){
 // 						zuJian.xuhao1.setVisibility(View.INVISIBLE);
@@ -427,7 +452,27 @@ public class xiaozuyijianActicity extends Activity{
  			//默认设成通过
  			//zuJian.xiaozuyijian1.setPromptId(1);
  			
- 			zuJian.xiaozufen1.setText( xiaozufenArray[position]);
+ 			zuJian.xiaozufen1.setText( xiaozufenArray[position]); 			
+ 			
+ 			
+ 			if ("toupiao".equals(appState.workfloat)){
+ 				zuJian.toupiao1.setEnabled(true);
+ 				listView_xiaozuyijian_submit.setVisibility(View.VISIBLE);
+ 			}else{
+ 				zuJian.toupiao1.setEnabled(false);
+ 				zuJian.toupiao1.setVisibility(View.GONE);
+ 			}
+ 			
+ 			if ("推荐".equals((String) data.get(position).get("opinion") )){
+ 				zuJian.xiaozuyijian1.setSelection(0);
+// 				zuJian.toupiao1.setSelection(0);
+ 			}else if ("不推荐".equals((String) data.get(position).get("opinion") )){
+ 				zuJian.xiaozuyijian1.setSelection(1);
+// 				zuJian.toupiao1.setSelection(1);
+ 			}else{
+ 				zuJian.xiaozuyijian1.setSelection(2);
+// 				zuJian.toupiao1.setSelection(0);
+ 			}
  			
  			if ("赞成".equals((String) data.get(position).get("toupiao"))){
  				zuJian.toupiao1.setSelection(0);
@@ -438,31 +483,11 @@ public class xiaozuyijianActicity extends Activity{
  			}else if ("弃权".equals((String) data.get(position).get("toupiao"))){
  				zuJian.toupiao1.setSelection(2);
  				//zuJian.xiaozuyijian1.setBackgroundColor(0x88AA0000);//红色
- 			}else{
- 				zuJian.toupiao1.setSelection(0);
- 				//zuJian.xiaozuyijian1.setBackgroundColor(0xff000000);//黑色
- 			}
- 			if ("toupiao".equals(appState.workfloat)){
- 				zuJian.toupiao1.setEnabled(true);
- 				listView_xiaozuyijian_submit.setVisibility(View.VISIBLE);
- 			}else{
- 				zuJian.toupiao1.setEnabled(false);
- 				zuJian.toupiao1.setVisibility(View.INVISIBLE);
  			}
  			
- 			if ("推荐".equals((String) data.get(position).get("opinion") )){
- 				zuJian.xiaozuyijian1.setSelection(0);
- 				//zuJian.xiaozuyijian1.setBackgroundColor(0xff000000);//黑色
- 			}else if ("不推荐".equals((String) data.get(position).get("opinion") )){
- 				zuJian.xiaozuyijian1.setSelection(1);
- 				//zuJian.xiaozuyijian1.setBackgroundColor(0x88AA0000);//红色
- 			}else{
- 				zuJian.xiaozuyijian1.setSelection(2);
- 				//zuJian.xiaozuyijian1.setBackgroundColor(0xff000000);//黑色
- 			}
  			if ("xiaozuyijian".equals(appState.workfloat)){
  				zuJian.xiaozuyijian1.setEnabled(true);
- 				listView_xiaozuyijian_submit.setVisibility(View.INVISIBLE);
+ 				listView_xiaozuyijian_submit.setVisibility(View.GONE);
  			}else{
  				zuJian.xiaozuyijian1.setEnabled(false);
  			}
@@ -803,11 +828,13 @@ public class xiaozuyijianActicity extends Activity{
 					if ("xiaozuyijian".equals(appState.workfloat)){
 						try {
 							updateworkfloatT.sleep(1);
+							if (updateworkfloatT != null){
+								updateworkfloatT.interrupt();
+							}
 						} catch (InterruptedException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-						updateworkfloatT.interrupt();
 						
 						appState.workfloat = "toupiao";
 						appState.closeMain = true;//提交成功才关闭主窗体

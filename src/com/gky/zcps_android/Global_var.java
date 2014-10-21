@@ -60,6 +60,7 @@ public class Global_var extends Application {
 	public boolean jiyu = false;//主任评委是否填写了寄语
 	
 	public String pwhid ;//评委会id    现在用作的是分组id
+	public String pwhname; //*****评委会
 	public String yichen; //议程链接
 
 	public String firm;
@@ -423,7 +424,7 @@ public class Global_var extends Application {
 			reader.setContentHandler(myContentHandler);// 为XMLReader设置内容处理器
 			reader.parse(new InputSource(new StringReader(resultstr)));// 开始解析
 			
-			//pwhid =  myContentHandler.pwhid; 
+			pwhname =  myContentHandler.pwhname; 
 		yichen = myContentHandler.yichen;
 			peopleList = myContentHandler.peopleList; 
 			//kaoheList = myContentHandler.kaoheList; 

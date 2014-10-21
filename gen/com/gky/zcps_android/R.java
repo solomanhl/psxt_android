@@ -312,21 +312,22 @@ public final class R {
         public static final int listview_inside2=0x7f030006;
         public static final int listview_inside3=0x7f030007;
         public static final int listview_xiaozuyijian=0x7f030008;
-        public static final int search=0x7f030009;
-        public static final int search_grid_head=0x7f03000a;
-        public static final int searchwithlist=0x7f03000b;
-        public static final int tab_layout1=0x7f03000c;
-        public static final int tab_layout2=0x7f03000d;
-        public static final int tab_layout3=0x7f03000e;
-        public static final int tab_layout4=0x7f03000f;
-        public static final int tab_layout5=0x7f030010;
-        public static final int tab_layout5_pinfen=0x7f030011;
-        public static final int tab_layout5_pinfen_bak=0x7f030012;
-        public static final int tab_layout5_xiaozuyijian=0x7f030013;
-        public static final int tab_layout_jiyu=0x7f030014;
-        public static final int xiaozufendialog=0x7f030015;
-        public static final int xiaozuyijian=0x7f030016;
-        public static final int xiaozuyijian_head=0x7f030017;
+        public static final int myspinner=0x7f030009;
+        public static final int search=0x7f03000a;
+        public static final int search_grid_head=0x7f03000b;
+        public static final int searchwithlist=0x7f03000c;
+        public static final int tab_layout1=0x7f03000d;
+        public static final int tab_layout2=0x7f03000e;
+        public static final int tab_layout3=0x7f03000f;
+        public static final int tab_layout4=0x7f030010;
+        public static final int tab_layout5=0x7f030011;
+        public static final int tab_layout5_pinfen=0x7f030012;
+        public static final int tab_layout5_pinfen_bak=0x7f030013;
+        public static final int tab_layout5_xiaozuyijian=0x7f030014;
+        public static final int tab_layout_jiyu=0x7f030015;
+        public static final int xiaozufendialog=0x7f030016;
+        public static final int xiaozuyijian=0x7f030017;
+        public static final int xiaozuyijian_head=0x7f030018;
     }
     public static final class menu {
         public static final int activity_menu=0x7f080000;

@@ -386,11 +386,13 @@ public class EntranceActivity extends Activity {
 			runThread = false;//停止线程
 			try {
 				updateworkfloatT.sleep(1);
+				if (updateworkfloatT != null){
+					updateworkfloatT.interrupt();
+				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
-			updateworkfloatT.interrupt();
+			}			
 		}
 		
 		appState.getDB();
@@ -1054,6 +1056,9 @@ public class EntranceActivity extends Activity {
 						// 处理进度条（当前）/（总步骤）
 						updateHandler( "successful" );
 						appState.tab5_state = "xiaozuyijian";
+						
+						
+						
 						Intent it = new Intent(EntranceActivity.this, xiaozuyijianActicity.class);
 						startActivity(it);
 //				}
@@ -1068,6 +1073,7 @@ public class EntranceActivity extends Activity {
 		
 		if ("toupiao".equals(appState.workfloat)) {
 			appState.firstIn = false;
+			button_toupiaostart.setEnabled(false);
 			new dlscoreThread().start();		
 		}else {
 			Toast toast = Toast.makeText(getApplicationContext(),"正在等待其他小组，请稍后...", Toast.LENGTH_LONG);
@@ -1100,11 +1106,13 @@ public class EntranceActivity extends Activity {
 			runThread = false;//停止线程
 			try {
 				updateworkfloatT.sleep(1);
+				if (updateworkfloatT != null){
+					updateworkfloatT.interrupt();
+				}
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			updateworkfloatT.interrupt();
 			
 			applicant = "applicant_one.xml";
 		}else{
@@ -1196,15 +1204,15 @@ public class EntranceActivity extends Activity {
 					}
 				}
 				
-
+				
+				
 				if (ceshiwanchen) {
 					// 处理进度条（当前）/（总步骤）
 					updateHandler( "4/4");
 					appState.searchLastPeople("2");// 提交状态（保存/提交评分/保存投票/提交投票）0 1 2 3
 					// 处理进度条（当前）/（总步骤）
 					updateHandler( "successful" );
-					appState.tab5_state = "toupiao";
-					
+					appState.tab5_state = "toupiao";					
 					
 //					Intent it = new Intent(EntranceActivity.this, MainActivity.class);
 					Intent it = new Intent(EntranceActivity.this, xiaozuyijianActicity.class);
@@ -1625,6 +1633,8 @@ public class EntranceActivity extends Activity {
 					
 					if ("xiaozuyijian".equals(appState.workfloat))
 						button_xiaozuyijian.setEnabled(true);
+					if ("toupiao".equals(appState.workfloat))
+						button_toupiaostart.setEnabled(true);
 				} else if ("selectWorkfoat".equals((String) msg.obj)) {
 					if (appState.xianchangfenzu) {
 						getWokfloat();
