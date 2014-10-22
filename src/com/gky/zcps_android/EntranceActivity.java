@@ -392,7 +392,8 @@ public class EntranceActivity extends Activity {
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}			
+			}		
+			android.os.Process.killProcess(android.os.Process.myPid());  
 		}
 		
 		appState.getDB();
