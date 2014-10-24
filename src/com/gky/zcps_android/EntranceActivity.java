@@ -422,7 +422,8 @@ public class EntranceActivity extends Activity {
 							public void onClick(
 									DialogInterface dialog,
 									int whichButton) {
-								finish();
+								//finish();
+								android.os.Process.killProcess(android.os.Process.myPid());  
 							}
 						}).show();
 	}
