@@ -485,12 +485,12 @@ public class xiaozuyijianActicity extends Activity{
  				//zuJian.xiaozuyijian1.setBackgroundColor(0x88AA0000);//红色
  			}
  			
- 			if ("xiaozuyijian".equals(appState.workfloat)){
- 				zuJian.xiaozuyijian1.setEnabled(true);
- 				listView_xiaozuyijian_submit.setVisibility(View.GONE);
- 			}else{
- 				zuJian.xiaozuyijian1.setEnabled(false);
- 			}
+// 			if ("xiaozuyijian".equals(appState.workfloat)){
+// 				zuJian.xiaozuyijian1.setEnabled(true);
+// 				listView_xiaozuyijian_submit.setVisibility(View.GONE);
+// 			}else{
+// 				zuJian.xiaozuyijian1.setEnabled(false);
+// 			}
  			
  			
  			zuJian.ceshi1.setText((String) data.get(position).get("ceshi"));
@@ -647,8 +647,8 @@ public class xiaozuyijianActicity extends Activity{
  	public void listView_xiaozuyijian_submit_onclick(View target){
  	// 弹框 提示是否提交评分
 		new AlertDialog.Builder(this)
-				.setTitle("是否提交小组意见？")
-				.setMessage("点击“确定”按钮提交投票结果到评审服务器，\n点击“返回”按钮可以继续修改。\n注意：选择确定之后，不能修改参评人员的信息！")
+				.setTitle("是否提交？")
+				.setMessage("点击“确定”按钮提交数据到评审服务器，\n点击“返回”按钮可以继续修改。\n注意：选择确定之后，不能修改参评人员的信息！")
 				.setNegativeButton("返回",
 						new DialogInterface.OnClickListener() {
 							@Override
@@ -668,14 +668,35 @@ public class xiaozuyijianActicity extends Activity{
 
 						if ("xiaozuyijian".equals(appState.workfloat)){
 							// 合成提交参数,调试时暂时屏蔽
-							for (int cur = 0; cur < appState.people_total; cur++) {
-								dataTransformb.append("{\"id\":\""
-										+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
-										+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
-										+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
-										+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
-										+ "},");
-							}
+//							for (int cur = 0; cur < appState.people_total; cur++) {
+//								dataTransformb.append("{\"id\":\""
+//										+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
+//										+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
+//										+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
+//										+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
+//										+ "},");
+//							}
+							String s;
+							dataTransformb = new StringBuilder();
+							dataTransformb.append("pwhid=" + URLEncoder.encode(pwhid) // 评委会
+									+ "&pwid=" + URLEncoder.encode(pwid) // 评委
+									+ "&data=[");
+
+							HashMap<String, Object> m = new HashMap<String, Object>();		
+								// 合成提交参数,调试时暂时屏蔽
+								for (int cur = 0; cur < appState.people_total; cur++) {
+									m = lst.get(cur);
+									s = m.get("opinion").toString();
+										xiaozuyijianArray[cur] = s;
+										
+										dataTransformb.append("{\"id\":\""
+												+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
+												+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
+												//+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
+												+ "\"total\":\"" + URLEncoder.encode("-1") + "\"," // 个人分
+												+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
+												+ "},");
+								}							
 						}else if("toupiao".equals(appState.workfloat)){
 							// 合成提交参数,调试时暂时屏蔽
 							for (int cur = 0; cur < appState.people_total; cur++) {
@@ -697,8 +718,19 @@ public class xiaozuyijianActicity extends Activity{
 								toast.show();
 								
 								System.out.println("小组意见/投票提交成功\r\n");								
+
+								try {
+									updateworkfloatT.sleep(1);
+									if (updateworkfloatT != null){
+										updateworkfloatT.interrupt();
+									}
+								} catch (InterruptedException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+								
 								appState.closeMain = true;//提交成功才关闭主窗体
-								finish();
+								xiaozuyijianActicity.this.finish();; //返回到入口界面
 						} else if ("接收失败".equals(tmp)) {
 							Toast toast = Toast.makeText(getApplicationContext(), "服务器接收失败，请重新提交！", Toast.LENGTH_SHORT);
 							toast.setGravity(Gravity.CENTER, 0, 0);
@@ -890,7 +922,7 @@ public class xiaozuyijianActicity extends Activity{
 		public void handleMessage(Message msg) {
 			if (!((String) msg.obj == null)) {
 				if ("send".equals((String) msg.obj))	{
-					submitXiaozuyijian();
+//					submitXiaozuyijian();
 				}else if ("request".equals((String) msg.obj))	{
 					getWokfloat();
 				}				
@@ -912,10 +944,13 @@ public class xiaozuyijianActicity extends Activity{
 				System.out.println("xiaozuyijianThread run again");
 				cnt++;
 				if (cnt == 300) {
-					updateHandler("send");
-				}else if (cnt == 600){
+					//updateHandler("send");
 					updateHandler("request");
-				}else	if (cnt > 600) {
+				}
+//					else if (cnt == 600){
+//					updateHandler("request");
+//				}
+				else	if (cnt > 300) {
 					cnt = 0;
 				}
 
@@ -949,8 +984,8 @@ public class xiaozuyijianActicity extends Activity{
 			for (int cur = 0; cur < appState.people_total; cur++) {
 				m = lst.get(cur);
 				s = m.get("opinion").toString();
-				if ( !s.equals(xiaozuyijianArray[cur]) ){
-					tijiao = true;
+//				if ( !s.equals(xiaozuyijianArray[cur]) ){
+//					tijiao = true;
 					xiaozuyijianArray[cur] = s;
 					
 					dataTransformb.append("{\"id\":\""
@@ -960,14 +995,14 @@ public class xiaozuyijianActicity extends Activity{
 							+ "\"total\":\"" + URLEncoder.encode("-1") + "\"," // 个人分
 							+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
 							+ "},");
-				}				
+//				}				
 			}
 
 		
 		dataTransformb.deleteCharAt(dataTransformb.length() - 1);// 去掉最后一个逗号
 		dataTransformb.append("]");
 
-		if (tijiao){
+//		if (tijiao){
 			String tmp = submitxiaozuyijian(dataTransformb.toString());
 			if ("接收成功".equals(tmp)){ 
 					Toast toast = Toast.makeText(getApplicationContext(),"提交成功！",  Toast.LENGTH_SHORT);
@@ -989,7 +1024,7 @@ public class xiaozuyijianActicity extends Activity{
 				//提交失败小组意见框变空
 //				zuJian.xiaozuyijian1.setSelection(2);
 			}
-		}
+//		}
 	}
 	
 	
