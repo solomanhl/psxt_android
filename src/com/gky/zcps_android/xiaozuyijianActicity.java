@@ -689,13 +689,16 @@ public class xiaozuyijianActicity extends Activity{
 									s = m.get("opinion").toString();
 										xiaozuyijianArray[cur] = s;
 										
-										dataTransformb.append("{\"id\":\""
-												+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
-												+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
-												//+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
-												+ "\"total\":\"" + URLEncoder.encode("-1") + "\"," // 个人分
-												+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
-												+ "},");
+										if (s != null && !"".equalsIgnoreCase(s)){
+											dataTransformb.append("{\"id\":\""
+													+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
+													+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
+													//+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
+													+ "\"total\":\"" + URLEncoder.encode("-1") + "\"," // 个人分
+													+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
+													+ "},");
+										}
+										
 								}							
 						}else if("toupiao".equals(appState.workfloat)){
 							// 合成提交参数,调试时暂时屏蔽
