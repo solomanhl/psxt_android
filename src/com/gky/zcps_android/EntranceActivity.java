@@ -382,19 +382,7 @@ public class EntranceActivity extends Activity {
 	
 	
 	public void exitAPP () {
-		if (appState.xianchangfenzu){
-			runThread = false;//停止线程
-			try {
-				updateworkfloatT.sleep(1);
-				if (updateworkfloatT != null){
-					updateworkfloatT.interrupt();
-				}
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}		
-			android.os.Process.killProcess(android.os.Process.myPid());  
-		}
+		
 		
 		appState.getDB();
 		//评审结束，退出，清空
@@ -422,8 +410,19 @@ public class EntranceActivity extends Activity {
 							public void onClick(
 									DialogInterface dialog,
 									int whichButton) {
-								//finish();
-								android.os.Process.killProcess(android.os.Process.myPid());  
+								
+									runThread = false;//停止线程
+									try {
+										updateworkfloatT.sleep(1);
+										if (updateworkfloatT != null){
+											updateworkfloatT.interrupt();
+										}
+									} catch (InterruptedException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}		
+									android.os.Process.killProcess(android.os.Process.myPid());  
+
 							}
 						}).show();
 	}
