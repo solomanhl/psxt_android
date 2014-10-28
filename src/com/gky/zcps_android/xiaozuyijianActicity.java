@@ -485,12 +485,12 @@ public class xiaozuyijianActicity extends Activity{
  				//zuJian.xiaozuyijian1.setBackgroundColor(0x88AA0000);//ºìÉ«
  			}
  			
-// 			if ("xiaozuyijian".equals(appState.workfloat)){
-// 				zuJian.xiaozuyijian1.setEnabled(true);
-// 				listView_xiaozuyijian_submit.setVisibility(View.GONE);
-// 			}else{
-// 				zuJian.xiaozuyijian1.setEnabled(false);
-// 			}
+ 			if ("xiaozuyijian".equals(appState.workfloat)){
+ 				zuJian.xiaozuyijian1.setEnabled(true);
+ 				listView_xiaozuyijian_submit.setVisibility(View.GONE);
+ 			}else{
+ 				zuJian.xiaozuyijian1.setEnabled(false);
+ 			}
  			
  			
  			zuJian.ceshi1.setText((String) data.get(position).get("ceshi"));
