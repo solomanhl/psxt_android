@@ -455,13 +455,13 @@ public class xiaozuyijianActicity extends Activity{
  			zuJian.xiaozufen1.setText( xiaozufenArray[position]); 			
  			
  			
-// 			if ("toupiao".equals(appState.workfloat)){
-// 				zuJian.toupiao1.setEnabled(true);
+ 			if ("toupiao".equals(appState.workfloat)){
+ 				zuJian.toupiao1.setEnabled(true);
 // 				listView_xiaozuyijian_submit.setVisibility(View.VISIBLE);
-// 			}else{
-// 				zuJian.toupiao1.setEnabled(false);
-// 				zuJian.toupiao1.setVisibility(View.GONE);
-// 			}
+ 			}else{
+ 				zuJian.toupiao1.setEnabled(false);
+ 				zuJian.toupiao1.setVisibility(View.GONE);
+ 			}
  			
  			if ("ÍÆ¼ö".equals((String) data.get(position).get("opinion") )){
  				zuJian.xiaozuyijian1.setSelection(0);
@@ -485,12 +485,12 @@ public class xiaozuyijianActicity extends Activity{
  				//zuJian.xiaozuyijian1.setBackgroundColor(0x88AA0000);//ºìÉ«
  			}
  			
- 			if ("xiaozuyijian".equals(appState.workfloat)){
- 				zuJian.xiaozuyijian1.setEnabled(true);
- 				listView_xiaozuyijian_submit.setVisibility(View.GONE);
- 			}else{
- 				zuJian.xiaozuyijian1.setEnabled(false);
- 			}
+// 			if ("xiaozuyijian".equals(appState.workfloat)){
+// 				zuJian.xiaozuyijian1.setEnabled(true);
+// 				listView_xiaozuyijian_submit.setVisibility(View.GONE);
+// 			}else{
+// 				zuJian.xiaozuyijian1.setEnabled(false);
+// 			}
  			
  			
  			zuJian.ceshi1.setText((String) data.get(position).get("ceshi"));
