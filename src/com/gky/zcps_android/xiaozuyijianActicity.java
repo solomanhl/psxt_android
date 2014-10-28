@@ -455,13 +455,13 @@ public class xiaozuyijianActicity extends Activity{
  			zuJian.xiaozufen1.setText( xiaozufenArray[position]); 			
  			
  			
- 			if ("toupiao".equals(appState.workfloat)){
- 				zuJian.toupiao1.setEnabled(true);
- 				listView_xiaozuyijian_submit.setVisibility(View.VISIBLE);
- 			}else{
- 				zuJian.toupiao1.setEnabled(false);
- 				zuJian.toupiao1.setVisibility(View.GONE);
- 			}
+// 			if ("toupiao".equals(appState.workfloat)){
+// 				zuJian.toupiao1.setEnabled(true);
+// 				listView_xiaozuyijian_submit.setVisibility(View.VISIBLE);
+// 			}else{
+// 				zuJian.toupiao1.setEnabled(false);
+// 				zuJian.toupiao1.setVisibility(View.GONE);
+// 			}
  			
  			if ("ÍÆ¼ö".equals((String) data.get(position).get("opinion") )){
  				zuJian.xiaozuyijian1.setSelection(0);
