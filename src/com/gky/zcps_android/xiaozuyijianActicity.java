@@ -517,7 +517,7 @@ public class xiaozuyijianActicity extends Activity{
 							//Toast.makeText(xiaozuyijianActicity.this, "你点击的是:" + str, 2000).show();
 							//注意：这里的position1是spinner选项item的position 从0开始		
 							
-							if (!"".equals(str) && "xiaozuyijian".equals(appState.workfloat) //选择不为空，是小组意见状态
+							if ( "xiaozuyijian".equals(appState.workfloat) //，是小组意见状态
 									&& ( appState.pinweiName.equals(appState.peopleList.get(position).get("expert_name").toString())  //主审评委是自己||是空
 											|| "".equals(appState.peopleList.get(position).get("expert_name").toString())  )  
 								){
@@ -526,11 +526,18 @@ public class xiaozuyijianActicity extends Activity{
 								
 								HashMap<String, Object> m = new HashMap<String, Object>();
 								m = lst.get(position);
-								m.remove("opinion");
-								m.put("opinion", str);
-								
+								m.remove("opinion");		
 								m.remove("expert_name");
-								m.put("expert_name", appState.pinweiName);
+								
+								if (!"".equals(str) ){ //不为空，写自己评委名字
+									m.put("opinion", str);
+									m.put("expert_name", appState.pinweiName);
+								}else{//为空，评委名字清空
+									m.put("opinion", "");
+									m.put("expert_name", "");
+								}
+								
+								
 								
 								lst.remove(position);
 								lst.add(position, m);			
@@ -645,108 +652,249 @@ public class xiaozuyijianActicity extends Activity{
  	
  	
  	public void listView_xiaozuyijian_submit_onclick(View target){
- 	// 弹框 提示是否提交评分
-		new AlertDialog.Builder(this)
-				.setTitle("是否提交？")
-				.setMessage("点击“确定”按钮提交数据到评审服务器，\n点击“返回”按钮可以继续修改。\n注意：选择确定之后，不能修改参评人员的信息！")
-				.setNegativeButton("返回",
-						new DialogInterface.OnClickListener() {
-							@Override
-							public void onClick(DialogInterface dialog, int which) {
-								//this.s = "Negative";
-					}
-				})
-				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int whichButton) {
-						String pwhid = appState.pwhid;// 评委会
-						String pwid = appState.pinweiName;// 评委
+ 		//发查重请求
+ 		String pwhid = appState.pwhid;// 评委会
+		String pwid = appState.pinweiName;// 评委
+		boolean sendcheck = false;
 
-						StringBuilder dataTransformb = new StringBuilder();
-						dataTransformb.append("pwhid=" + URLEncoder.encode(pwhid) // 评委会
-								+ "&pwid=" + URLEncoder.encode(pwid) // 评委
-								+ "&data=[");
+		StringBuilder dataTransformb = new StringBuilder();
+		dataTransformb.append("pwhid=" + URLEncoder.encode(pwhid) // 评委会
+				+ "&pwid=" + URLEncoder.encode(pwid) // 评委
+				+ "&data=");
 
-						if ("xiaozuyijian".equals(appState.workfloat)){
-							// 合成提交参数,调试时暂时屏蔽
-//							for (int cur = 0; cur < appState.people_total; cur++) {
-//								dataTransformb.append("{\"id\":\""
-//										+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
-//										+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
-//										+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
-//										+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
-//										+ "},");
-//							}
-							String s;
-							dataTransformb = new StringBuilder();
-							dataTransformb.append("pwhid=" + URLEncoder.encode(pwhid) // 评委会
-									+ "&pwid=" + URLEncoder.encode(pwid) // 评委
-									+ "&data=[");
+		if ("xiaozuyijian".equals(appState.workfloat)){
+			String s, n;
 
-							HashMap<String, Object> m = new HashMap<String, Object>();		
-								// 合成提交参数,调试时暂时屏蔽
-								for (int cur = 0; cur < appState.people_total; cur++) {
-									m = lst.get(cur);
-									s = m.get("opinion").toString();
-										xiaozuyijianArray[cur] = s;
-										
-										if (s != null && !"".equalsIgnoreCase(s)){
-											dataTransformb.append("{\"id\":\""
-													+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
-													+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
-													//+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
-													+ "\"total\":\"" + URLEncoder.encode("-1") + "\"," // 个人分
-													+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
-													+ "},");
-										}
-										
-								}							
-						}else if("toupiao".equals(appState.workfloat)){
-							// 合成提交参数,调试时暂时屏蔽
-							for (int cur = 0; cur < appState.people_total; cur++) {
-								//合成提交参数
-								dataTransformb.append( "{\"id\":\"" + URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
-										+ "\"vote\":\"" + URLEncoder.encode( toupiaoArray[cur]) + "\"" //投票
-										+ "},");
-							}
+			HashMap<String, Object> m = new HashMap<String, Object>();		
+				// 合成提交参数,调试时暂时屏蔽
+				for (int cur = 0; cur < appState.people_total; cur++) {
+					m = lst.get(cur);
+					s = m.get("opinion").toString();
+					n = m.get("expert_name").toString();
+						xiaozuyijianArray[cur] = s;
+						
+						if (s != null && !"".equalsIgnoreCase(s) && pwid.equals(n) ){
+							dataTransformb.append(URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + ",");
+							sendcheck = true;
 						}
 						
-						dataTransformb.deleteCharAt(dataTransformb.length() - 1);// 去掉最后一个逗号
-						dataTransformb.append("]");
+				}	
+				dataTransformb.deleteCharAt(dataTransformb.length() - 1);// 去掉最后一个逗号
+				
+				if (sendcheck){//请求查重
+					String tmp = submitcheck(dataTransformb.toString());
+					if ("没有重复".equals(tmp)){ 
+							System.out.println("没有重复");
+							popTijiaoWindow();
+					} else  {
+						//弹框显示已经被提交到服务器的人
+						new AlertDialog.Builder(this)
+	 					.setTitle("下列参评人员已经被其他评委填写小组意见，返回修改或继续提交？")
+	 					.setMessage(tmp)
+	 					.setNegativeButton("返回修改",
+	 							new DialogInterface.OnClickListener() {
+	 								@Override
+	 								public void onClick(DialogInterface dialog, int which) {
+	 									//this.s = "Negative";
+	 						}
+	 					})
+	 					.setPositiveButton("继续提交", new DialogInterface.OnClickListener() {
+	 						public void onClick(DialogInterface dialog, int whichButton) {
+	 							String pwhid = appState.pwhid;// 评委会
+	 							String pwid = appState.pinweiName;// 评委
 
-						String tmp = submitxiaozuyijian(dataTransformb.toString());
-						if ("接收成功".equals(tmp)){ 
-								Toast toast = Toast.makeText(getApplicationContext(),"提交成功！",  Toast.LENGTH_SHORT);
-								toast.setGravity(Gravity.CENTER, 0,0);
-								toast.cancel();
-								toast.show();
-								
-								System.out.println("小组意见/投票提交成功\r\n");								
+	 							StringBuilder dataTransformb = new StringBuilder();
+	 							dataTransformb.append("pwhid=" + URLEncoder.encode(pwhid) // 评委会
+	 									+ "&pwid=" + URLEncoder.encode(pwid) // 评委
+	 									+ "&data=[");
 
-								try {
-									updateworkfloatT.sleep(1);
-									if (updateworkfloatT != null){
-										updateworkfloatT.interrupt();
-									}
-								} catch (InterruptedException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-								
-								appState.closeMain = true;//提交成功才关闭主窗体
-								xiaozuyijianActicity.this.finish();; //返回到入口界面
-						} else if ("接收失败".equals(tmp)) {
-							Toast toast = Toast.makeText(getApplicationContext(), "服务器接收失败，请重新提交！", Toast.LENGTH_SHORT);
-							toast.setGravity(Gravity.CENTER, 0, 0);
-							toast.show();
-							
-							System.out.println("小组意见/投票提交失败\r\n");
-							//提交失败继续留在主窗体
-						}
+	 							if ("xiaozuyijian".equals(appState.workfloat)){
+	 								// 合成提交参数,调试时暂时屏蔽
+//	 								for (int cur = 0; cur < appState.people_total; cur++) {
+//	 									dataTransformb.append("{\"id\":\""
+//	 											+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
+//	 											+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
+//	 											+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
+//	 											+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
+//	 											+ "},");
+//	 								}
+	 								String s, n;
 
-						
+	 								HashMap<String, Object> m = new HashMap<String, Object>();		
+	 									// 合成提交参数,调试时暂时屏蔽
+	 									for (int cur = 0; cur < appState.people_total; cur++) {
+	 										m = lst.get(cur);
+	 										s = m.get("opinion").toString();
+	 										n = m.get("expert_name").toString();
+	 											xiaozuyijianArray[cur] = s;
+	 											
+	 											if (s != null && !"".equalsIgnoreCase(s) && pwid.equals(n) ){
+	 												dataTransformb.append("{\"id\":\""
+	 														+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
+	 														+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
+	 														//+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
+	 														+ "\"total\":\"" + URLEncoder.encode("-1") + "\"," // 个人分
+	 														+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
+	 														+ "},");
+	 											}
+	 											
+	 									}							
+	 							}else if("toupiao".equals(appState.workfloat)){
+	 								// 合成提交参数,调试时暂时屏蔽
+	 								for (int cur = 0; cur < appState.people_total; cur++) {
+	 									//合成提交参数
+	 									dataTransformb.append( "{\"id\":\"" + URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
+	 											+ "\"vote\":\"" + URLEncoder.encode( toupiaoArray[cur]) + "\"" //投票
+	 											+ "},");
+	 								}
+	 							}
+	 							
+	 							dataTransformb.deleteCharAt(dataTransformb.length() - 1);// 去掉最后一个逗号
+	 							dataTransformb.append("]");
+
+	 							String tmp = submitxiaozuyijian(dataTransformb.toString());
+	 							if ("接收成功".equals(tmp)){ 
+	 									try {
+	 										updateworkfloatT.sleep(1);
+	 										if (updateworkfloatT != null){
+	 											updateworkfloatT.interrupt();
+	 										}
+	 									} catch (InterruptedException e) {
+	 										// TODO Auto-generated catch block
+	 										e.printStackTrace();
+	 									}
+	 									
+	 									Toast toast = Toast.makeText(getApplicationContext(),"提交成功！",  Toast.LENGTH_SHORT);
+	 									toast.setGravity(Gravity.CENTER, 0,0);
+	 									toast.cancel();
+	 									toast.show();
+	 									
+	 									System.out.println("小组意见/投票提交成功\r\n");					
+	 									appState.closeMain = true;//提交成功才关闭主窗体
+	 									xiaozuyijianActicity.this.finish();; //返回到入口界面
+	 							} else if ("接收失败".equals(tmp)) {
+	 								Toast toast = Toast.makeText(getApplicationContext(), "服务器接收失败，请重新提交！", Toast.LENGTH_SHORT);
+	 								toast.setGravity(Gravity.CENTER, 0, 0);
+	 								toast.show();
+	 								
+	 								System.out.println("小组意见/投票提交失败\r\n");
+	 								//提交失败继续留在主窗体
+	 							}
+
+	 							
+	 						}
+	 					}).show();
 					}
-				}).show();
+				}
+		}else if ( "toupiao".equals(appState.workfloat)){
+			popTijiaoWindow();
+		}
+ 		
 		
+		
+ 	
+		
+ 	}
+ 	
+ 	private void popTijiaoWindow(){
+ 	// 弹框 提示是否提交评分
+ 			new AlertDialog.Builder(this)
+ 					.setTitle("是否提交？")
+ 					.setMessage("点击“确定”按钮提交数据到评审服务器，\n点击“返回”按钮可以继续修改。\n注意：选择确定之后，不能修改参评人员的信息！")
+ 					.setNegativeButton("返回",
+ 							new DialogInterface.OnClickListener() {
+ 								@Override
+ 								public void onClick(DialogInterface dialog, int which) {
+ 									//this.s = "Negative";
+ 						}
+ 					})
+ 					.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+ 						public void onClick(DialogInterface dialog, int whichButton) {
+ 							String pwhid = appState.pwhid;// 评委会
+ 							String pwid = appState.pinweiName;// 评委
+
+ 							StringBuilder dataTransformb = new StringBuilder();
+ 							dataTransformb.append("pwhid=" + URLEncoder.encode(pwhid) // 评委会
+ 									+ "&pwid=" + URLEncoder.encode(pwid) // 评委
+ 									+ "&data=[");
+
+ 							if ("xiaozuyijian".equals(appState.workfloat)){
+ 								// 合成提交参数,调试时暂时屏蔽
+// 								for (int cur = 0; cur < appState.people_total; cur++) {
+// 									dataTransformb.append("{\"id\":\""
+// 											+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
+// 											+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
+// 											+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
+// 											+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
+// 											+ "},");
+// 								}
+ 								String s, n;
+
+ 								HashMap<String, Object> m = new HashMap<String, Object>();		
+ 									// 合成提交参数,调试时暂时屏蔽
+ 									for (int cur = 0; cur < appState.people_total; cur++) {
+ 										m = lst.get(cur);
+ 										s = m.get("opinion").toString();
+ 										n = m.get("expert_name").toString();
+ 											xiaozuyijianArray[cur] = s;
+ 											
+ 											if (s != null && !"".equalsIgnoreCase(s) && pwid.equals(n) ){
+ 												dataTransformb.append("{\"id\":\""
+ 														+ URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
+ 														+ "\"opinion\":\"" + URLEncoder.encode(xiaozuyijianArray[cur]) + "\","// 小组意见
+ 														//+ "\"total\":\"" + URLEncoder.encode(appState.scoreList.get(cur).get("pinjunfen").toString()) + "\"," // 个人分
+ 														+ "\"total\":\"" + URLEncoder.encode("-1") + "\"," // 个人分
+ 														+ "\"group_score\":\"" + URLEncoder.encode(xiaozufenArray[cur]) + "\"" // 小组分
+ 														+ "},");
+ 											}
+ 											
+ 									}							
+ 							}else if("toupiao".equals(appState.workfloat)){
+ 								// 合成提交参数,调试时暂时屏蔽
+ 								for (int cur = 0; cur < appState.people_total; cur++) {
+ 									//合成提交参数
+ 									dataTransformb.append( "{\"id\":\"" + URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
+ 											+ "\"vote\":\"" + URLEncoder.encode( toupiaoArray[cur]) + "\"" //投票
+ 											+ "},");
+ 								}
+ 							}
+ 							
+ 							dataTransformb.deleteCharAt(dataTransformb.length() - 1);// 去掉最后一个逗号
+ 							dataTransformb.append("]");
+
+ 							String tmp = submitxiaozuyijian(dataTransformb.toString());
+ 							if ("接收成功".equals(tmp)){ 
+ 									Toast toast = Toast.makeText(getApplicationContext(),"提交成功！",  Toast.LENGTH_SHORT);
+ 									toast.setGravity(Gravity.CENTER, 0,0);
+ 									toast.cancel();
+ 									toast.show();
+ 									
+ 									System.out.println("小组意见/投票提交成功\r\n");								
+
+ 									try {
+ 										updateworkfloatT.sleep(1);
+ 										if (updateworkfloatT != null){
+ 											updateworkfloatT.interrupt();
+ 										}
+ 									} catch (InterruptedException e) {
+ 										// TODO Auto-generated catch block
+ 										e.printStackTrace();
+ 									}
+ 									
+ 									appState.closeMain = true;//提交成功才关闭主窗体
+ 									xiaozuyijianActicity.this.finish();; //返回到入口界面
+ 							} else if ("接收失败".equals(tmp)) {
+ 								Toast toast = Toast.makeText(getApplicationContext(), "服务器接收失败，请重新提交！", Toast.LENGTH_SHORT);
+ 								toast.setGravity(Gravity.CENTER, 0, 0);
+ 								toast.show();
+ 								
+ 								System.out.println("小组意见/投票提交失败\r\n");
+ 								//提交失败继续留在主窗体
+ 							}
+
+ 							
+ 						}
+ 					}).show();
  	}
  	
  	private String submitxiaozuyijian(String dataTrasform) {
@@ -822,6 +970,74 @@ public class xiaozuyijianActicity extends Activity{
 
  				}
  				return tmp;
+ 	}
+ 	
+ 	private String submitcheck(String dataTrasform) {
+ 		
+ 	// 要访问的web servlet
+ 				// 注意：IP和端口是本地的 需要换成你的IP和端口
+ 				String servletUrl = "";
+
+ 				servletUrl = appState.HttpHead + "/expert/check";
+
+ 				// 将参数传给服务器
+ 				String resultData = "";
+ 				URL url = null;
+ 				try {
+ 					url = new URL(servletUrl);
+ 				} catch (MalformedURLException e) {
+ 					// TODO Auto-generated catch block
+ 					e.printStackTrace();
+ 				}
+
+ 				if (url != null) {
+ 					try {
+ 						// 使用HttpURLConnection打开连接
+ 						HttpURLConnection urlConn = (HttpURLConnection) url.openConnection();
+ 						urlConn.setConnectTimeout(appState.REQUEST_TIMEOUT);
+ 						urlConn.setReadTimeout(appState.SO_TIMEOUT);
+ 						// 因为要求使用Post方式提交数据，需要设置为true
+ 						urlConn.setDoOutput(true);
+ 						urlConn.setDoInput(true);
+ 						// 设置以Post方式，注意此处的“POST”必须大写
+ 						urlConn.setRequestMethod("POST");
+ 						// Post 请求不能使用缓存
+ 						urlConn.setUseCaches(false);
+ 						urlConn.setInstanceFollowRedirects(true);
+ 						// 配置本次连接的Content-Type，配置为application/x-www-form-urlencoded
+ 						urlConn.setRequestProperty("Content-Type",
+ 								"application/x-www-form-urlencoded");
+ 						// 连接，从postUrl.openConnection()至此的配置必须在connect之前完成
+ 						// 要注意的事connection.getOutputStream会隐含地进行connect。
+ 						urlConn.connect();
+ 						// DataOutputStream流上传数据
+ 						DataOutputStream out = new DataOutputStream(
+ 								urlConn.getOutputStream());
+ 						// 将要上传的内容写入流中
+ 						out.writeBytes(dataTrasform.toString());
+ 						// 刷新，关闭
+ 						out.flush();
+ 						out.close();
+ 						// 得到读取的数据
+ 						InputStreamReader in = new InputStreamReader(
+ 								urlConn.getInputStream());
+ 						BufferedReader buffer = new BufferedReader(in);
+ 						String str = null;
+ 						while ((str = buffer.readLine()) != null) {
+ 							resultData += str;
+ 						}
+ 						in.close();
+ 						urlConn.disconnect();
+ 						
+ 					} catch (IOException e) {
+ 						// TODO Auto-generated catch block
+ 						e.printStackTrace();
+ 					}
+ 				}// if(url!=null)
+ 				else {
+
+ 				}
+ 				return resultData;
  	}
 
  	public void getWokfloat(){
