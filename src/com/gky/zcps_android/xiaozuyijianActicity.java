@@ -108,14 +108,16 @@ public class xiaozuyijianActicity extends Activity{
 				
 				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
 			}else if ("toupiao".equals(appState.workfloat)){
-				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
-				if ("推荐".equals(xiaozuyijianArray[i] )){
-					toupiaoArray[i] = "赞成";
-	 			}else if ("不推荐".equals(xiaozuyijianArray[i] )){
-	 				toupiaoArray[i] = "反对";
-	 			}else{
-	 				toupiaoArray[i] = "赞成";
-	 			}
+				//默认按小组意见显示投票
+//				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
+//				if ("推荐".equals(xiaozuyijianArray[i] )){
+//					toupiaoArray[i] = "赞成";
+//	 			}else if ("不推荐".equals(xiaozuyijianArray[i] )){
+//	 				toupiaoArray[i] = "反对";
+//	 			}else{
+//	 				toupiaoArray[i] = "赞成";
+//	 			}
+				toupiaoArray[i] = "";
 			}
 			
 			lianghuaArray[i] = appState.peopleList.get(i).get("lianghua").toString();
@@ -375,7 +377,7 @@ public class xiaozuyijianActicity extends Activity{
 				adapter1.setDropDownViewResource(R.layout.myspinner);  
 		        zuJian.xiaozuyijian1.setAdapter(adapter1);  
 		        
-		        adapterData2 = new String[] { "赞成", "反对", "弃权"}; 
+		        adapterData2 = new String[] { "赞成", "反对", "弃权", ""}; 
 				adapter2 = new ArrayAdapter<String>(xiaozuyijianActicity.this, R.layout.myspinner, adapterData2);  
 				adapter2.setDropDownViewResource(R.layout.myspinner);  
 		        zuJian.toupiao1.setAdapter(adapter2);  	
@@ -474,6 +476,7 @@ public class xiaozuyijianActicity extends Activity{
 // 				zuJian.toupiao1.setSelection(0);
  			}
  			
+ 			//默认跟小组意见关联
  			if ("赞成".equals((String) data.get(position).get("toupiao"))){
  				zuJian.toupiao1.setSelection(0);
  				//zuJian.xiaozuyijian1.setBackgroundColor(0xff000000);//黑色
@@ -483,7 +486,11 @@ public class xiaozuyijianActicity extends Activity{
  			}else if ("弃权".equals((String) data.get(position).get("toupiao"))){
  				zuJian.toupiao1.setSelection(2);
  				//zuJian.xiaozuyijian1.setBackgroundColor(0x88AA0000);//红色
+ 			}else if ("".equals((String) data.get(position).get("toupiao"))){
+ 				zuJian.toupiao1.setSelection(3);
+ 				//zuJian.xiaozuyijian1.setBackgroundColor(0x88AA0000);//红色
  			}
+
  			
  			if ("xiaozuyijian".equals(appState.workfloat)){
  				zuJian.xiaozuyijian1.setEnabled(true);
@@ -568,6 +575,7 @@ public class xiaozuyijianActicity extends Activity{
 					String str = parent.getItemAtPosition(position1).toString();
 					//Toast.makeText(xiaozuyijianActicity.this, "你点击的是:" + str, 2000).show();
 					//注意：这里的position1是spinner选项item的position 从0开始
+					
 					
 					HashMap<String, Object> m = new HashMap<String, Object>();
 					m = lst.get(position);
@@ -656,6 +664,7 @@ public class xiaozuyijianActicity extends Activity{
  		String pwhid = appState.pwhid;// 评委会
 		String pwid = appState.pinweiName;// 评委
 		boolean sendcheck = false;
+		boolean sendtoupiao = false;
 
 		StringBuilder dataTransformb = new StringBuilder();
 		dataTransformb.append("pwhid=" + URLEncoder.encode(pwhid) // 评委会
@@ -664,6 +673,7 @@ public class xiaozuyijianActicity extends Activity{
 
 		if ("xiaozuyijian".equals(appState.workfloat)){
 			String s, n;
+			sendcheck = false;
 
 			HashMap<String, Object> m = new HashMap<String, Object>();		
 				// 合成提交参数,调试时暂时屏蔽
@@ -787,7 +797,29 @@ public class xiaozuyijianActicity extends Activity{
 					}
 				}
 		}else if ( "toupiao".equals(appState.workfloat)){
-			popTijiaoWindow();
+			sendtoupiao = true;;
+			for (int cur = 0; cur < appState.people_total; cur++) {
+					if ("".equals(toupiaoArray[cur]) || toupiaoArray[cur] == null){
+						sendtoupiao = false;
+						break;
+					}
+				}
+			
+			if (sendtoupiao){
+				popTijiaoWindow();
+			}else {
+				new AlertDialog.Builder(this)
+					.setTitle("提示")
+					.setMessage("您的电脑中还有参评人员未投票，请全部投票后再提交数据。")
+					.setNegativeButton("返回修改",
+							new DialogInterface.OnClickListener() {
+								@Override
+								public void onClick(DialogInterface dialog, int which) {
+									//this.s = "Negative";
+						}
+					}).show();
+			}
+			
 		}
  		
 		
