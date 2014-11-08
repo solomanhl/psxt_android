@@ -53,7 +53,7 @@ public class xiaozuyijianActicity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.xiaozuyijian);
 		
-		setTitle(appState.pwhname + " （" +appState.peopleList.get(0).get("shenbaojibie").toString() + "）");
+		setTitle(appState.pwhname + " （" +appState.peopleList.get(0).get("shenbaojibie").toString() + "） ，共" + String.valueOf(appState.people_total) + "人" );
 		
 		listView_xiaozuyijian_submit = (Button) findViewById(R.id.listView_xiaozuyijian_submit);
 		
@@ -109,15 +109,15 @@ public class xiaozuyijianActicity extends Activity{
 				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
 			}else if ("toupiao".equals(appState.workfloat)){
 				//默认按小组意见显示投票
-//				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
-//				if ("推荐".equals(xiaozuyijianArray[i] )){
-//					toupiaoArray[i] = "赞成";
-//	 			}else if ("不推荐".equals(xiaozuyijianArray[i] )){
-//	 				toupiaoArray[i] = "反对";
-//	 			}else{
-//	 				toupiaoArray[i] = "赞成";
-//	 			}
-				toupiaoArray[i] = "";
+				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
+				if ("推荐".equals(xiaozuyijianArray[i] )){
+					toupiaoArray[i] = "赞成";
+	 			}else if ("不推荐".equals(xiaozuyijianArray[i] )){
+	 				toupiaoArray[i] = "反对";
+	 			}else{
+	 				toupiaoArray[i] = "赞成";
+	 			}
+//				toupiaoArray[i] = "";
 			}
 			
 			lianghuaArray[i] = appState.peopleList.get(i).get("lianghua").toString();
@@ -422,6 +422,13 @@ public class xiaozuyijianActicity extends Activity{
  			zuJian.xinmin1.setText((String) data.get(position).get("xinmin"));			
  			zuJian.danwei1.setText((String) data.get(position).get("danwei"));
  			zuJian.pinwei1.setText((String) data.get(position).get("expert_name"));
+ 			
+ 			//小组意见状态，如果评委是自己，则该行高亮显示
+ 			if ("xiaozuyijian".equals(appState.workfloat) && data.get(position).get("expert_name").equals(appState.pinweiName)){
+ 				zuJian.list_xiaozuyijian.setBackgroundColor(0x44ffd7ae);
+ 			}else{
+ 				zuJian.list_xiaozuyijian.setBackgroundColor(0xffaaaaaa);
+ 			}
  			
  			if (data.get(position).get("lianghua").equals("量化")) {	//量化评分
  				zuJian.fenshu1.setText((String) data.get(position).get("pinfen"));
@@ -1175,7 +1182,7 @@ public class xiaozuyijianActicity extends Activity{
 				if ("send".equals((String) msg.obj))	{
 //					submitXiaozuyijian();
 				}else if ("request".equals((String) msg.obj))	{
-					getWokfloat();
+//					getWokfloat();
 				}				
 			}
 		}
@@ -1197,6 +1204,7 @@ public class xiaozuyijianActicity extends Activity{
 				if (cnt == 300) {
 					//updateHandler("send");
 					updateHandler("request");
+					getWokfloat();
 				}
 //					else if (cnt == 600){
 //					updateHandler("request");

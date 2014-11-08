@@ -15,7 +15,8 @@
         android:layout_marginRight="4sp"
         android:gravity="center"
         android:text="编号"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:visibility="invisible" />
     
     <TextView
         android:id="@+id/bianhao1"

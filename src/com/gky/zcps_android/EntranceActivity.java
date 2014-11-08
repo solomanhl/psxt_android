@@ -928,7 +928,6 @@ public class EntranceActivity extends Activity {
 	public void button_start_onclick(View target) {
 		Log.i("info", "点击开始评分");
 		appState.firstIn = false;
-
 				
 			if (downloadfinish) {
 				appState.searchLastPeople("0");// 提交状态（保存/提交评分/保存投票/提交投票）0 1 2 3
