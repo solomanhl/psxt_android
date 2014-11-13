@@ -4,23 +4,31 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -41,7 +49,8 @@ import android.widget.Toast;
 public class xiaozuyijianActicity extends Activity{
 	private Global_var appState;
 	private HashMap<String, Object> map = new HashMap<String, Object>();
-	public String xiaozufenArray []  ,xiaozuyijianArray [],  lianghuaArray[],toupiaoArray [];
+	public String xiaozufenArray []  ,zhushenpinweiArray[], xiaozuyijianArray [],  lianghuaArray[],toupiaoArray [];
+	public boolean hasSharedPre;
 	public Button listView_xiaozuyijian_submit;
 
 	public Thread updateworkfloatT;
@@ -58,15 +67,19 @@ public class xiaozuyijianActicity extends Activity{
 		listView_xiaozuyijian_submit = (Button) findViewById(R.id.listView_xiaozuyijian_submit);
 		
 		 xiaozufenArray  = new String [appState.people_total];
+		 zhushenpinweiArray  = new String [appState.people_total];
 		 xiaozuyijianArray  = new String [appState.people_total];
 		 toupiaoArray  = new String [appState.people_total];
 		 lianghuaArray  = new String [appState.people_total];
 		 
 		 for (int i=0 ;i<appState.people_total; i++){
 			 xiaozufenArray[i] = "";
+			 zhushenpinweiArray[i] = "";
 			 xiaozuyijianArray[i] = "";
 			 toupiaoArray[i] = "";
 		 }
+		 
+		 hasSharedPre= false;
 				 
 //		updateUI();
 		
@@ -82,31 +95,53 @@ public class xiaozuyijianActicity extends Activity{
 		
 	}
 	
+	@SuppressLint("NewApi")
+	private void getSharePrefe() {
+		// TODO Auto-generated method stub
+		if ( "xiaozuyijian".equals(appState.workfloat) ) {
+			SharedPreferences userInfo = getSharedPreferences("xiaozuyijian", 0);  
+//			 final SharedPreferences userInfo = PreferenceManager .getDefaultSharedPreferences(xiaozuyijianActicity.this); 
+			 for (int i =0;i<appState.people_total; i++){
+				 xiaozuyijianArray[i] = userInfo.getString(String.valueOf(i), appState.scoreList.get(i).get("opinion").toString());
+				 zhushenpinweiArray[i] = userInfo.getString("pw" + String.valueOf(i), appState.peopleList.get(i).get("expert_name").toString());
+			 }
+			
+		}
+//		else if ("toupiao".equals(appState.tab5_state)) {
+//			SharedPreferences userInfo = getSharedPreferences("toupiao", 0);  
+//			Set<String> set = new HashSet<String>(); 
+//			userInfo.getStringSet("tp", set);
+//			toupiaoArray = (String[]) set.toArray(new String[set.size()]); //将SET转换为数组 
+//		}
+	}
 	
 	private Cursor cursor = null;
 	@Override
 	public void onStart () {
 		super.onStart();
+		
+		getSharePrefe();//恢复状态,//只对小组意见有效
+		
 		appState.getDB();
 		
 		for (int i = 0; i< appState.people_total; i++) {
 			if ("xiaozuyijian".equals(appState.workfloat)){
-				cursor = appState.queryTable(appState.peopleList.get(i).get("id").toString() );
-				if (cursor != null && cursor.getCount() != 0) {
-					cursor.moveToNext();
-					if ( !"".equals(cursor.getString(4)) && cursor.getString(9) != null ) {	//4投票
-						toupiaoArray [i] = cursor.getString(4);
-					}
-					if ( !"".equals(cursor.getString(9)) && cursor.getString(9) != null ) {	//9小组评分
-						xiaozufenArray [i] = cursor.getString(9);
-					}
-//					if ( !"".equals(cursor.getString(10)) && cursor.getString(10) !=null ) {	//10小组意见
-//						//xiaozuyijianArray [i] = cursor.getString(10);						
-//					}					
-				}		
-				cursor.close();
-				
-				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
+//				cursor = appState.queryTable(appState.peopleList.get(i).get("id").toString() );
+//				if (cursor != null && cursor.getCount() != 0) {
+//					cursor.moveToNext();
+//					if ( !"".equals(cursor.getString(4)) && cursor.getString(9) != null ) {	//4投票
+//						toupiaoArray [i] = cursor.getString(4);
+//					}
+//					if ( !"".equals(cursor.getString(9)) && cursor.getString(9) != null ) {	//9小组评分
+//						xiaozufenArray [i] = cursor.getString(9);
+//					}
+////					if ( !"".equals(cursor.getString(10)) && cursor.getString(10) !=null ) {	//10小组意见
+////						//xiaozuyijianArray [i] = cursor.getString(10);						
+////					}					
+//				}		
+//				cursor.close();
+//				
+//				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
 			}else if ("toupiao".equals(appState.workfloat)){
 				//默认按小组意见显示投票
 				xiaozuyijianArray [i] = appState.scoreList.get(i).get("opinion").toString();
@@ -125,6 +160,7 @@ public class xiaozuyijianActicity extends Activity{
 		updateUI();
 	}
 	
+	@SuppressLint("NewApi")
 	@Override
 	public void onStop () {
 		super.onStop();
@@ -153,6 +189,43 @@ public class xiaozuyijianActicity extends Activity{
 			
 		}
 		appState.dbClose();
+		
+		
+		//写小组意见和投票Preferences
+		if ("xiaozuyijian".equals(appState.workfloat)){
+			SharedPreferences userInfo = getSharedPreferences("xiaozuyijian", 0);  
+//			 final SharedPreferences userInfo = PreferenceManager .getDefaultSharedPreferences(xiaozuyijianActicity.this); 
+			 Editor editor = userInfo.edit(); 
+			for (int i = 0; i<appState.people_total; i++){
+				editor.putString(String.valueOf(i), xiaozuyijianArray[i]);
+				editor.putString("pw" + String.valueOf(i), zhushenpinweiArray[i]);
+			}
+			editor.commit(); 
+			hasSharedPre = true;
+		}
+//		else if ("toupiao".equals(appState.workfloat)){
+//			SharedPreferences userInfo = getSharedPreferences("toupiao", 0);  
+//			Set<String> set = new HashSet<String>(); 
+//			for (int i = 0; i<appState.people_total; i++){
+//				set.add(toupiaoArray[i]);
+//			}
+//			userInfo.edit().putStringSet("tp", set);
+//		}
+		
+	}
+	
+	@Override    
+	protected void onDestroy() { 
+    	super.onDestroy(); 
+    	if ("xiaozuyijian".equals(appState.workfloat) ) {
+    		SharedPreferences userInfo = getSharedPreferences("xiaozuyijian", 0);  
+    			userInfo.edit().clear().commit();
+    			hasSharedPre = false;
+    			Log.i("info","清空SharedPreferences");
+    		}
+//    	else if ("toupiao".equals(appState.tab5_state)) {
+//
+//    		}
 	}
 	
 	
@@ -271,9 +344,18 @@ public class xiaozuyijianActicity extends Activity{
 			
 			map.put("lianghua", appState.peopleList.get(i).get("lianghua").toString());
 			map.put("gerenyijian", appState.peopleList.get(i).get("gerenyijian").toString());
-			map.put("expert_name", appState.peopleList.get(i).get("expert_name").toString()); //主审评委
+//			map.put("expert_name", appState.peopleList.get(i).get("expert_name").toString()); //主审评委
 			//map.put("xiaozupinfen", xiaozufenArray[i]);
-			map.put("opinion", appState.scoreList.get(i).get("opinion").toString() );
+			
+			if (hasSharedPre){
+				map.put("opinion", xiaozuyijianArray[i] );
+				map.put("expert_name", zhushenpinweiArray[i]); //主审评委
+				
+			}else{
+				map.put("opinion", appState.scoreList.get(i).get("opinion").toString() );
+				map.put("expert_name", appState.peopleList.get(i).get("expert_name").toString()); //主审评委
+			}
+			
 			map.put("toupiao", toupiaoArray[i] );
 			
 			if ("".equals( appState.scoreList.get(i).get("pogejielun").toString())){
@@ -546,12 +628,14 @@ public class xiaozuyijianActicity extends Activity{
 								if (!"".equals(str) ){ //不为空，写自己评委名字
 									m.put("opinion", str);
 									m.put("expert_name", appState.pinweiName);
+									zhushenpinweiArray[position] = appState.pinweiName;
 								}else{//为空，评委名字清空
 									m.put("opinion", "");
 									m.put("expert_name", "");
+									zhushenpinweiArray[position] = "";
 								}
 								
-								
+								xiaozuyijianArray [position] = str;
 								
 								lst.remove(position);
 								lst.add(position, m);			

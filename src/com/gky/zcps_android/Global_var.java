@@ -51,6 +51,7 @@ import android.widget.Toast;
 public class Global_var extends Application {
 	private final static int CWJ_HEAP_SIZE = 48* 1024* 1024 ; 
 	
+	
 	public boolean xianchangfenzu = false;    //是现场分组，还是建评委会时分组
 	public boolean lianghua = true;	//是否量化
 	public boolean pinshenjieshu = false;		//评审结束标志
