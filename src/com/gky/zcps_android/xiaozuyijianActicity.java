@@ -62,7 +62,7 @@ public class xiaozuyijianActicity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.xiaozuyijian);
 		
-		if ("xiaozufen".equals(appState.workfloat)){
+		if ("xiaozuyijian".equals(appState.workfloat)){
 			setTitle(appState.pwhname +  " ， 共" + String.valueOf(appState.people_total) + "人" );
 		}else if ("toupiao".equals(appState.workfloat)){
 			setTitle(appState.pwhname +  "（" + appState.peopleList.get(0).get("shenbaojibie").toString() + "） ， 共" + String.valueOf(appState.people_total) + "人" );
