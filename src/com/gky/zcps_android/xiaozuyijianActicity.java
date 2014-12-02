@@ -940,10 +940,12 @@ public class xiaozuyijianActicity extends Activity{
  						public void onClick(DialogInterface dialog, int whichButton) {
  							String pwhid = appState.pwhid;// 评委会
  							String pwid = appState.pinweiName;// 评委
+ 							String specgrp = appState.specgrp;// 评委会代码
 
  							StringBuilder dataTransformb = new StringBuilder();
  							dataTransformb.append("pwhid=" + URLEncoder.encode(pwhid) // 评委会
  									+ "&pwid=" + URLEncoder.encode(pwid) // 评委
+ 									+ "&specgrp=" + URLEncoder.encode(specgrp) // 评委会代码
  									+ "&data=[");
 
  							if ("xiaozuyijian".equals(appState.workfloat)){
@@ -982,7 +984,7 @@ public class xiaozuyijianActicity extends Activity{
  								for (int cur = 0; cur < appState.people_total; cur++) {
  									//合成提交参数
  									dataTransformb.append( "{\"id\":\"" + URLEncoder.encode(appState.peopleList.get(cur).get("id").toString()) + "\","// 参评人
- 											+ "\"vote\":\"" + URLEncoder.encode( toupiaoArray[cur]) + "\"" //投票
+ 											+ "\"vote\":\"" + URLEncoder.encode( toupiaoArray[cur]) + "\"" //投票 											
  											+ "},");
  								}
  							}
@@ -1084,6 +1086,7 @@ public class xiaozuyijianActicity extends Activity{
  						}
  						in.close();
  						urlConn.disconnect();
+// 						if (resultData.indexOf("接收成功")>-1) {
  						if ("接收成功".equals(resultData)) {
  							tmp = "接收成功";
  						} else {

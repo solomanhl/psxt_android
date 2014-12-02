@@ -62,6 +62,7 @@ public class Global_var extends Application {
 	
 	public String pwhid ;//评委会id    现在用作的是分组id
 	public String pwhname; //*****评委会
+	public String specgrp;//评委会代码
 	public String yichen; //议程链接
 
 	public String firm;
@@ -426,6 +427,7 @@ public class Global_var extends Application {
 			reader.parse(new InputSource(new StringReader(resultstr)));// 开始解析
 			
 			pwhname =  myContentHandler.pwhname; 
+			specgrp =  myContentHandler.specgrp; 
 		yichen = myContentHandler.yichen;
 			peopleList = myContentHandler.peopleList; 
 			//kaoheList = myContentHandler.kaoheList; 

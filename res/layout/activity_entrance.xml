@@ -105,7 +105,7 @@
                 android:background="@drawable/input1"
                 android:ems="8"
                 android:focusable="true"
-                android:inputType="textPassword"
+                android:inputType="numberPassword"
                 android:textSize="32sp"
                 android:text = "" >
             </EditText>
