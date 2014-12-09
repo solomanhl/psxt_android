@@ -985,7 +985,23 @@ public class EntranceActivity extends Activity {
 //			startActivity(it);			
 			button_xiaozuyijian.setEnabled(false);
 			
-			new updateOpinionThread().start();
+			//再查一次状态，看服务器是不是跳到投票了
+			if (appState.xianchangfenzu) {
+				getWokfloat();
+			}else{
+				selectWorkfoat();
+			}
+			//如果点了小组意见之后，服务器跳变成投票了
+			if ("toupiao".equals(appState.workfloat)){
+			Log.i("info", "变成开始投票");
+
+			appState.firstIn = false;
+			button_toupiaostart.setEnabled(false);
+			new dlscoreThread().start();		
+			}else{
+				new updateOpinionThread().start();
+			}
+			
 		}
 	
 		// 小组意见前更新进程----------------------------------------
