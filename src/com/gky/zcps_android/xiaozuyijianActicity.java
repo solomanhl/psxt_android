@@ -155,7 +155,7 @@ public class xiaozuyijianActicity extends Activity{
 	 			}else if ("不推荐".equals(xiaozuyijianArray[i] )){
 	 				toupiaoArray[i] = "反对";
 	 			}else{
-	 				toupiaoArray[i] = "赞成";
+	 				toupiaoArray[i] = "";
 	 			}
 //				toupiaoArray[i] = "";
 			}
@@ -459,7 +459,7 @@ public class xiaozuyijianActicity extends Activity{
 				zuJian.toupiao1 = (Spinner) convertView.findViewById(R.id.toupiao1);
 				
 				
-				adapterData1 = new String[] { "推荐", "不推荐", ""}; 
+				adapterData1 = new String[] { "推荐", "不推荐", "建议", ""}; 
 				adapter1 = new ArrayAdapter<String>(xiaozuyijianActicity.this, R.layout.myspinner, adapterData1);  
 				adapter1.setDropDownViewResource(R.layout.myspinner);  
 		        zuJian.xiaozuyijian1.setAdapter(adapter1);  
@@ -565,8 +565,11 @@ public class xiaozuyijianActicity extends Activity{
  			}else if ("不推荐".equals((String) data.get(position).get("opinion") )){
  				zuJian.xiaozuyijian1.setSelection(1);
 // 				zuJian.toupiao1.setSelection(1);
- 			}else{
+ 			}else if ("建议".equals((String) data.get(position).get("opinion") )){
  				zuJian.xiaozuyijian1.setSelection(2);
+// 				zuJian.toupiao1.setSelection(1);
+ 			}else{
+ 				zuJian.xiaozuyijian1.setSelection(3);
 // 				zuJian.toupiao1.setSelection(0);
  			}
  			
