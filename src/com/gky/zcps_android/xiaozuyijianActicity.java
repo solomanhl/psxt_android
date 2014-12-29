@@ -31,6 +31,7 @@ import android.os.Message;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -1382,5 +1383,35 @@ public class xiaozuyijianActicity extends Activity{
 	}
 	
 	
+	// 检测按键
+		@Override
+		public boolean onKeyDown(int keyCode, KeyEvent event) {
+			// 按下键盘上返回按钮
+			if (keyCode == KeyEvent.KEYCODE_BACK) {
+				System.out.println("返回按钮");
+				new AlertDialog.Builder(this)
+						.setTitle("请确认")
+						.setMessage("是否要返回到上一页？修改的数据将不会被保存。")
+						.setNegativeButton("取消",
+								new DialogInterface.OnClickListener() {
+									@Override
+									public void onClick(DialogInterface dialog,
+											int which) {
+
+									}
+								})
+						.setPositiveButton("确定",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int whichButton) {
+										appState.closeMain = true;//提交成功才关闭主窗体
+	 									xiaozuyijianActicity.this.finish();; //返回到入口界面
+									}
+								}).show();
+				return true;
+			} else {
+				return super.onKeyDown(keyCode, event);
+			}
+		}
 	
 }
